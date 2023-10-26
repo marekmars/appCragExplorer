@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <corners android:bottomRightRadius= "20dp"
+                android:bottomLeftRadius="20dp"/>
+            <!-- Radio de las esquinas en dp -->
+            <solid android:color="@color/white" /><!-- Color de fondo -->
+        </shape>
+
+    </item>
+</layer-list>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/navigation_home_explora">
+
+    <fragment
+        android:id="@+id/navigation_home_cercanos"
+        android:name="com.heissen.cragexplorer.ui.home.cercanos.CercanosFragment"
+        android:label="fragment_cercanos"
+        tools:layout="@layout/fragment_cercanos" >
+        <action
+            android:id="@+id/action_cercanosFragment_to_exploraFragment"
+            app:destination="@id/navigation_home_explora" />
+        <action
+            android:id="@+id/action_navigation_home_cercanos_to_detalleSectorFragment"
+            app:destination="@id/detalleSectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_home_explora"
+        android:name="com.heissen.cragexplorer.ui.home.explora.ExploraFragment"
+        android:label="fragment_explora"
+        tools:layout="@layout/fragment_explora" >
+        <action
+            android:id="@+id/action_exploraFragment_to_cercanosFragment"
+            app:destination="@id/navigation_home_cercanos" />
+        <action
+            android:id="@+id/action_navigation_home_explora_to_detalleSectorFragment"
+            app:destination="@id/detalleSectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleSectorFragment"
+        android:name="com.heissen.cragexplorer.ui.home.explora.detalles.DetalleSectorFragment"
+        android:label="fragment_detalle_sector"
+        tools:layout="@layout/fragment_detalle_sector" >
+        <action
+            android:id="@+id/action_detalleSectorFragment_to_navigation_home_explora"
+            app:destination="@id/navigation_home_explora" />
+    </fragment>
+
+</navigation>

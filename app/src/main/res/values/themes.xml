@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.CragExplorer" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryVariant">@color/orange</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Otros estilos de tu aplicación -->
+
+        <!-- Establece el color de la barra de estado en blanco -->
+        <item name="android:statusBarColor">@android:color/white</item>
+
+        <!-- Establece el texto de la barra de estado en negro -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

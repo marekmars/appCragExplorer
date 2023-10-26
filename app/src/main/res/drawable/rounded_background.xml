@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <corners android:radius="10dp" /> <!-- Radio de las esquinas en dp -->
+            <solid android:color="@color/white" /> <!-- Color de fondo -->
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="@android:color/white" /> <!-- Color del borde gris -->
+            <stroke android:width="2dp" android:color="@android:color/darker_gray" /> <!-- Ancho del borde en dp -->
+            <corners android:radius="10dp" /> <!-- Radio de las esquinas en dp -->
+        </shape>
+    </item>
+</layer-list>

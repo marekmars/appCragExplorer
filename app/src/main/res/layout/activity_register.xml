@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_registrarse"
+    app:fontFamily="@font/custom_font"
+    tools:context=".RegisterActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTituloRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Registrarse"
+                android:textColor="@color/black"
+                android:textFontWeight="@integer/material_motion_duration_long_1"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/laca_medium" />
+
+            <EditText
+                android:id="@+id/etNombreRegister"
+                android:layout_width="293dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_background"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                app:fontFamily="@font/laca_regular" />
+
+            <EditText
+                android:id="@+id/etApellidoRegister"
+                android:layout_width="293dp"
+                android:layout_height="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_background"
+                android:ems="10"
+                android:hint="Apellido"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                app:fontFamily="@font/laca_regular" />
+
+            <EditText
+                android:id="@+id/etCorreoRegister"
+                android:layout_width="293dp"
+                android:layout_height="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_background"
+                android:ems="10"
+                android:hint="Correo"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                app:fontFamily="@font/laca_regular" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilClave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:padding="0dp"
+                app:boxBackgroundMode="none">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/etClaveRegister"
+                        android:layout_width="293dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/rounded_background"
+                        android:ems="10"
+                        android:hint="Clave"
+                        android:inputType="textPassword"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="0dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnVisibility"
+                        android:layout_width="61dp"
+                        android:layout_height="51dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_pressed"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/etClaveRegister"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/etClaveRegister"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.538"
+                        app:srcCompat="@drawable/ic_visibility_off" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilClaveNuevamente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:padding="0dp"
+                app:boxBackgroundMode="none">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/etClaveNuevamenteRegister"
+                        android:layout_width="293dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/rounded_background"
+                        android:ems="10"
+                        android:hint="Clave Nuevamente"
+                        android:inputType="textPassword"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="0dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnVisibilityNuevamente"
+                        android:layout_width="62dp"
+                        android:layout_height="49dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_pressed"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/etClaveNuevamenteRegister"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/etClaveNuevamenteRegister"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.538"
+                        app:srcCompat="@drawable/ic_visibility_off" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvImgRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_pressed"
+                app:cardBackgroundColor="@color/material_dynamic_neutral20"
+                app:cardCornerRadius="180dp"
+                app:cardElevation="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="180dp">
+
+                    <ImageView
+                        android:id="@+id/imgAvatarRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_pressed"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar_default" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="140dp"
+                android:layout_height="52dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_background__button"
+                android:text="Registrarse"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:fontFamily="@font/laca_medium" />
+
+            <Button
+                android:id="@+id/btnLoginR"
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_pressed"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:fontFamily="@font/laca_medium" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
