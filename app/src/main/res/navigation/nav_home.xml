@@ -9,25 +9,18 @@
         android:id="@+id/navigation_home_cercanos"
         android:name="com.heissen.cragexplorer.ui.home.cercanos.CercanosFragment"
         android:label="fragment_cercanos"
-        tools:layout="@layout/fragment_cercanos" >
-        <action
-            android:id="@+id/action_cercanosFragment_to_exploraFragment"
-            app:destination="@id/navigation_home_explora" />
-        <action
-            android:id="@+id/action_navigation_home_cercanos_to_detalleSectorFragment"
-            app:destination="@id/detalleSectorFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_cercanos" />
     <fragment
         android:id="@+id/navigation_home_explora"
         android:name="com.heissen.cragexplorer.ui.home.explora.ExploraFragment"
         android:label="fragment_explora"
         tools:layout="@layout/fragment_explora" >
         <action
-            android:id="@+id/action_exploraFragment_to_cercanosFragment"
-            app:destination="@id/navigation_home_cercanos" />
-        <action
             android:id="@+id/action_navigation_home_explora_to_detalleSectorFragment"
             app:destination="@id/detalleSectorFragment" />
+        <action
+            android:id="@+id/action_navigation_home_explora_to_navigation_home_cercanos"
+            app:destination="@id/navigation_home_cercanos" />
     </fragment>
     <fragment
         android:id="@+id/detalleSectorFragment"
@@ -37,6 +30,31 @@
         <action
             android:id="@+id/action_detalleSectorFragment_to_navigation_home_explora"
             app:destination="@id/navigation_home_explora" />
+        <action
+            android:id="@+id/action_detalleSectorFragment_to_zonaFragment"
+            app:destination="@id/zonaFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/zonaFragment"
+        android:name="com.heissen.cragexplorer.ui.home.zonas.ZonaFragment"
+        android:label="fragment_zona"
+        tools:layout="@layout/fragment_zona" >
+        <action
+            android:id="@+id/action_zonaFragment_to_detalleSectorFragment"
+            app:destination="@id/detalleSectorFragment" />
+        <action
+            android:id="@+id/action_zonaFragment_to_viaFragment"
+            app:destination="@id/viaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viaFragment"
+        android:name="com.heissen.cragexplorer.ui.home.vias.ViaFragment"
+        android:label="fragment_via"
+        tools:layout="@layout/fragment_via" >
+        <action
+            android:id="@+id/action_viaFragment_to_zonaFragment"
+            app:destination="@id/zonaFragment" />
     </fragment>
 
 </navigation>

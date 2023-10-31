@@ -166,7 +166,6 @@ public class RegisterActivityViewModel extends AndroidViewModel {
         if(result.getData()!=null){
             mImgUri.setValue(result.getData().getData());
         }
-
     }
 
    /* public void registrarUser(Usuario usuario) {

@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.heissen.cragexplorer.LocalDateTimeDeserializer;
+import com.heissen.cragexplorer.models.Resenia;
 import com.heissen.cragexplorer.models.Sector;
 import com.heissen.cragexplorer.models.Usuario;
+import com.heissen.cragexplorer.models.Via;
+import com.heissen.cragexplorer.models.Zona;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public class ApiService {
     public static final String URL_BASE = "http://192.168.1.7:5000/";
@@ -59,6 +63,9 @@ public class ApiService {
     public interface ApiInterface {
         final String URL_USERS = "api/Usuarios/";
         final String URL_SECTORES = "api/Sectores/";
+        final String URL_ZONAS = "api/Zonas/";
+        final String URL_VIAS = "api/Vias/";
+        final String URL_FOTOS = "api/Fotos/";
         //Metodos Usuario
         @FormUrlEncoded
         @POST(URL_USERS+"login")
@@ -78,7 +85,29 @@ public class ApiService {
         @GET(URL_SECTORES+"sectores")
         Call<ArrayList<Sector>> getSectores(@Header("Authorization") String token);
 
+        @GET(URL_SECTORES+"{id}")
+        Call<Sector> getSector(@Header("Authorization") String token,  @Path("id") int id);
+        @GET(URL_SECTORES+"fotos/{id}")
+        Call<List<String>> getFotosSector(@Header("Authorization") String token,  @Path("id") int id);
+        @GET(URL_SECTORES+"calificacion/{id}")
+        Call<Double> getCalificacionSector(@Header("Authorization") String token,  @Path("id") int id);
+        //Metodos Zonas
+        @GET(URL_ZONAS+"sector/{idSector}")
+        Call<List<Zona>> getZonasSector(@Header("Authorization") String token, @Path("idSector") int id);
+        @GET(URL_ZONAS+"{idZona}/vias")
+        Call<ArrayList<Via>> getViasZona(@Header("Authorization") String token, @Path("idZona") int id);
+        //Metodos Vias
 
+        @GET(URL_VIAS+"{id}/fotos")
+        Call<List<String>> getFotosVia(@Header("Authorization") String token,  @Path("id") int id);
+        @GET(URL_VIAS+"{id}/calificacion")
+        Call<Double> getCalificacionVia(@Header("Authorization") String token,  @Path("id") int id);
+        @GET(URL_VIAS+"{id}/resenias")
+        Call<ArrayList<Resenia>> getReseniasVia(@Header("Authorization") String token, @Path("id") int id);
 
+        //Metodos Fotos
+        @FormUrlEncoded
+        @POST(URL_FOTOS+"agregar/{idVia}")
+        Call<String> cargarFotosVia(@Header("Authorization") String token,@Field("fotos") ArrayList<String> fotos,@Path("idVia") int idVia);
     }
 }

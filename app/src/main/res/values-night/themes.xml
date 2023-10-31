@@ -12,4 +12,5 @@
         <!-- Establece el texto de la barra de estado en negro -->
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
 </resources>
