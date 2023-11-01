@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.databinding.FragmentReseniasBinding;
 import com.heissen.cragexplorer.models.Resenia;
+import com.heissen.cragexplorer.models.Via;
 import com.heissen.cragexplorer.ui.home.explora.detalles.ZonasAdapter;
 import com.heissen.cragexplorer.ui.home.vias.ViaViewModel;
 
@@ -41,7 +42,7 @@ public class ReseniasFragment extends DialogFragment {
         vm = new ViewModelProvider(this).get(ReseniasFragmentViewModel.class);
         Bundle bundle = getArguments();
 
-        vm.getResenias(bundle.getInt("idVia"));
+        vm.getResenias(bundle.getSerializable("via", Via.class).getId());
         vm.getmResenias().observe(getViewLifecycleOwner(),reseniasAux -> {
             GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(), 1,GridLayoutManager.VERTICAL,false);
             binding.rvResenias.setLayoutManager(gridLayoutManager);

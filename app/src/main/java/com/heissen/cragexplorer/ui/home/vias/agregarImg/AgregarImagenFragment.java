@@ -25,28 +25,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RatingBar;
 
 import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.databinding.FragmentAgregarImagenBinding;
 import com.heissen.cragexplorer.databinding.FragmentReseniasBinding;
 import com.heissen.cragexplorer.models.Via;
 import com.heissen.cragexplorer.ui.home.vias.ViaFragment;
+import com.heissen.cragexplorer.ui.home.vias.agregarImg.selectorFecha.DateFragment;
 import com.heissen.cragexplorer.ui.home.vias.resenias.ReseniasFragmentViewModel;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AgregarImagenFragment extends DialogFragment {
     private AgregarImagenViewModel vm;
     private FragmentAgregarImagenBinding binding;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
+    private int tipoAscenso;
 
+    private String comentario;
+
+    private int porcentaje;
+    private int calificacion;
+    private LocalDateTime selectedDate;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentAgregarImagenBinding.inflate(getLayoutInflater());
         vm = new ViewModelProvider(this).get(AgregarImagenViewModel.class);
+        porcentaje=10;
+        binding.etPorcentajeAgregar.setText(porcentaje+" %");
         Bundle bundle = getArguments();
-        Via via=bundle.getSerializable("via", Via.class);
-        Log.d("salida","VIAAAAAAAAAA:" +via.toString());
+        Via via = bundle.getSerializable("via", Via.class);
+        Log.d("salida", "VIAAAAAAAAAA:" + via.toString());
         imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -57,8 +70,14 @@ public class AgregarImagenFragment extends DialogFragment {
                     }
                 }
         );
+        binding.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                calificacion=(int) rating;
+                Log.d("salida","CALIFICACION: "+calificacion);
+            }
+        });
         binding.btnAgregarImg.setOnClickListener(v -> cargarImagen());
-
 
         vm.getmUrliList().observe(getViewLifecycleOwner(), uriList -> {
             uriList.forEach(uri -> Log.d("salida", uri.toString()));
@@ -71,9 +90,28 @@ public class AgregarImagenFragment extends DialogFragment {
 
         binding.btnAgregar.setOnClickListener(v -> {
             vm.agregarFotoVia(vm.getmUrliList().getValue(), via.getId());
-           dismiss();
+            comentario=binding.etComentario.getText().toString();
+            dismiss();
             ((ViaFragment) getParentFragment()).onDialogDismissed();
         });
+        binding.btnDatePicker.setOnClickListener(v -> {
+            DateFragment dateFragment = new DateFragment();
+            dateFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyleDate);
+            dateFragment.show(getChildFragmentManager(), "dialogoFecha");
+        });
+        binding.btnPorcentajeMas.setOnClickListener(v -> {
+            vm.plusProcentaje();
+            vm.getmPorcentaje().observe(getViewLifecycleOwner(),porcentaje -> this.porcentaje=porcentaje);
+            binding.etPorcentajeAgregar.setText(porcentaje+ " %");
+        });
+        binding.btnPorcentajeMenos.setOnClickListener(v -> {
+            vm.minusProcentaje();
+            vm.getmPorcentaje().observe(getViewLifecycleOwner(),porcentaje -> this.porcentaje=porcentaje);
+            binding.etPorcentajeAgregar.setText(porcentaje+ " %");
+        });
+
+
+        toogleButtons();
 
         return binding.getRoot();
     }
@@ -87,10 +125,9 @@ public class AgregarImagenFragment extends DialogFragment {
         Window window = dialog.getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.BOTTOM;
-        window.setAttributes(params);;
-
+        window.setAttributes(params);
+        ;
         return dialog;
-
     }
 
     private void cargarImagen() {
@@ -99,5 +136,48 @@ public class AgregarImagenFragment extends DialogFragment {
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         imagePickerLauncher.launch(intent);
     }
+
+    public void updateSelectedDate(LocalDateTime date) {
+        selectedDate = date;
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Log.d("salida", selectedDate.format(formatoFecha));
+        binding.etFechaAgregar.setText(selectedDate.format(formatoFecha));
+    }
+
+    private void toogleButtons() {
+        binding.btnOnsight.setOnClickListener(v -> {
+            tipoAscenso = 1;
+            v.setBackgroundResource(R.drawable.button_pressed_border_grey);
+            binding.btnFlash.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnProyect.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnRedpoint.setBackgroundResource(R.drawable.button_pressed_border);
+        });
+
+        binding.btnFlash.setOnClickListener(v -> {
+            tipoAscenso = 2;
+            v.setBackgroundResource(R.drawable.button_pressed_border_grey);
+            binding.btnOnsight.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnProyect.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnRedpoint.setBackgroundResource(R.drawable.button_pressed_border);
+        });
+
+        binding.btnRedpoint.setOnClickListener(v -> {
+            tipoAscenso = 3;
+            v.setBackgroundResource(R.drawable.button_pressed_border_grey);
+            binding.btnFlash.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnProyect.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnOnsight.setBackgroundResource(R.drawable.button_pressed_border);
+        });
+        binding.btnProyect.setOnClickListener(v -> {
+            tipoAscenso = 0;
+            v.setBackgroundResource(R.drawable.button_pressed_border_grey);
+            binding.btnFlash.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnOnsight.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.btnRedpoint.setBackgroundResource(R.drawable.button_pressed_border);
+        });
+    }
+
+
+
 
 }

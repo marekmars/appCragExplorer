@@ -33,17 +33,25 @@ public class AgregarImagenViewModel extends AndroidViewModel {
     private MutableLiveData<ArrayList<Uri>> mUrliList;
     private MutableLiveData<Uri> mImgUri;
     private ApiService.ApiInterface apiService;
+
+    private MutableLiveData<Integer> mPorcentaje;
     private String token;
+
     public AgregarImagenViewModel(@NonNull Application application) {
         super(application);
         mUrliList = new MutableLiveData<>();
         mImgUri = new MutableLiveData<>();
         apiService = ApiService.getApiInferface();
-        token= ApiService.leerToken(getApplication());
+        token = ApiService.leerToken(getApplication());
+        mPorcentaje=new MutableLiveData<>(10);
     }
 
     public LiveData<ArrayList<Uri>> getmUrliList() {
         return mUrliList;
+    }
+
+    public LiveData<Integer> getmPorcentaje() {
+        return mPorcentaje;
     }
 
     public String convertirImgBase64(Uri uri) {
@@ -105,15 +113,15 @@ public class AgregarImagenViewModel extends AndroidViewModel {
         ArrayList<String> imgsBase64 = new ArrayList<>();
 
         listUris.forEach(s -> {
-        imgsBase64.add(convertirImgBase64(s));
+            imgsBase64.add(convertirImgBase64(s));
         });
-        Call<String> llamada = apiService.cargarFotosVia(token,imgsBase64,idVia);
+        Call<String> llamada = apiService.cargarFotosVia(token, imgsBase64, idVia);
         llamada.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
 
-                   Log.d("salida","TODO OK");
+                    Log.d("salida", "TODO OK");
 
                 } else {
                     Log.d("salida", "ELSE " + response.raw());
@@ -129,5 +137,19 @@ public class AgregarImagenViewModel extends AndroidViewModel {
         });
     }
 
+    public void plusProcentaje() {
+        if (mPorcentaje.getValue()<100){
+            int porcentaje=mPorcentaje.getValue();
+            porcentaje+=10;
+            mPorcentaje.setValue(porcentaje);
+        }
+    }
+    public void minusProcentaje() {
+        if (mPorcentaje.getValue()>10){
+            int porcentaje=mPorcentaje.getValue();
+            porcentaje-=10;
+            mPorcentaje.setValue(porcentaje);
+        }
+    }
 
 }

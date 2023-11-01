@@ -26,11 +26,16 @@ import com.heissen.cragexplorer.models.Zona;
 import com.heissen.cragexplorer.ui.home.vias.agregarImg.AgregarImagenFragment;
 import com.heissen.cragexplorer.ui.home.vias.resenias.ReseniasFragment;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class ViaFragment extends Fragment {
 
     private ViaViewModel vm;
     private FragmentViaBinding binding;
     private Via via;
+
+
 
     public static ViaFragment newInstance() {
         return new ViaFragment();
@@ -106,5 +111,7 @@ public class ViaFragment extends Fragment {
         });
         Log.d("salida","Salio del dialogo");
     }
+
+
 
 }

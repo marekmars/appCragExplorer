@@ -138,23 +138,6 @@
                             app:iss_delay="1000"
                             app:iss_period="1000">
 
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                android:id="@+id/btnAddImg"
-                                android:layout_width="53dp"
-                                android:layout_height="57dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentEnd="true"
-                                app:borderWidth="0dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginStart="314dp"
-                                android:layout_marginTop="223dp"
-                                android:layout_marginEnd="4dp"
-                                android:layout_marginBottom="0dp"
-                                android:clickable="true"
-                                android:src="@drawable/baseline_add_a_photo_24"
-                                app:backgroundTint="@color/colorTransparent"
-                                app:elevation="0dp" />
                         </com.denzcoskun.imageslider.ImageSlider>
 
                     </FrameLayout>
@@ -325,6 +308,26 @@
                             android:layout_marginEnd="15dp"
                             android:layout_weight="1" />
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/btnAddImg"
+                            android:layout_width="53dp"
+                            android:layout_height="57dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:clickable="true"
+                            app:maxImageSize="50dp"
+                            android:src="@drawable/baseline_add_circle_outline_24"
+                            app:backgroundTint="@color/colorTransparent"
+                            app:borderWidth="0dp"
+                            app:elevation="0dp" />
                     </LinearLayout>
 
 

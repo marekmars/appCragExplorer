@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <corners android:radius="10dp" /> <!-- Radio de las esquinas en dp -->
+            <corners android:radius="20dp" /> <!-- Radio de las esquinas en dp -->
             <solid android:color="@color/white" /> <!-- Color de fondo -->
         </shape>
     </item>

@@ -38,8 +38,8 @@ public class ViasAdapter extends RecyclerView.Adapter<ViasAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViasAdapter.ViewHolder holder, int position) {
-
         holder.via.setText(vias.get(position).getNombre());
+        holder.grado.setText(vias.get(position).getGrado().getGradoN());
     }
 
     @Override
@@ -49,11 +49,11 @@ public class ViasAdapter extends RecyclerView.Adapter<ViasAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView via;
-
+        TextView grado;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             via = itemView.findViewById(R.id.tvLabelZonaItem);
-
+            grado=itemView.findViewById(R.id.tvGradoItem);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
