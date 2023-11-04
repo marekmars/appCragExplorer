@@ -49,6 +49,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.5.3")
     implementation ("com.google.android.gms:play-services-location:20.0.0")
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.libraries.places:places:2.5.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")

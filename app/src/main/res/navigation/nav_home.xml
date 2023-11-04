@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home_cercanos"
         android:name="com.heissen.cragexplorer.ui.home.cercanos.CercanosFragment"
         android:label="fragment_cercanos"
-        tools:layout="@layout/fragment_cercanos" />
+        tools:layout="@layout/fragment_cercanos" >
+        <action
+            android:id="@+id/action_navigation_home_cercanos_to_detalleSectorFragment"
+            app:destination="@id/detalleSectorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home_explora"
         android:name="com.heissen.cragexplorer.ui.home.explora.ExploraFragment"
@@ -33,6 +37,9 @@
         <action
             android:id="@+id/action_detalleSectorFragment_to_zonaFragment"
             app:destination="@id/zonaFragment" />
+        <action
+            android:id="@+id/action_detalleSectorFragment_to_navigation_home_cercanos"
+            app:destination="@id/navigation_home_cercanos" />
 
     </fragment>
     <fragment

@@ -1,4 +1,4 @@
-package com.heissen.cragexplorer.ui.home.vias.agregarImg.selectorFecha;
+package com.heissen.cragexplorer.ui.home.vias.agregarSesion.selectorFecha;
 
 import androidx.lifecycle.ViewModel;
 

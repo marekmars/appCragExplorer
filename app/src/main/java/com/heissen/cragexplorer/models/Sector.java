@@ -1,6 +1,8 @@
 package com.heissen.cragexplorer.models;
 
-public class Sector {
+import java.io.Serializable;
+
+public class Sector implements Serializable {
     private int id;
     private String nombre;
     private double latitud ;

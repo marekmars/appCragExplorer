@@ -9,7 +9,7 @@
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
     android:background="@drawable/dialog_bg_date"
-    tools:context=".ui.home.vias.agregarImg.selectorFecha.DateFragment">
+    tools:context=".ui.home.vias.agregarSesion.selectorFecha.DateFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

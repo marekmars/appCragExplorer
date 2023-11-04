@@ -1,39 +1,30 @@
 package com.heissen.cragexplorer.models;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-public class Resenia implements Serializable {
+public class Favorito {
 
     private int id;
+
     private Via via;
 
     private int idVia;
+
+
     private Usuario usuario;
+
 
     private int idUsuario;
 
-    private String comentario;
-
-    private double calificacion;
-
     private String fecha;
 
-    public Resenia( int idVia, String comentario, double calificacion, String fecha) {
-        this.idVia = idVia;
-        this.comentario = comentario;
-        this.calificacion = calificacion;
-        this.fecha = fecha;
+    public Favorito() {
     }
 
-    public Resenia(int id, int idVia, int idUsuario, String comentario, double calificacion, String fecha) {
+    public Favorito(int id, Via via, int idVia, Usuario usuario, int idUsuario, String fecha) {
         this.id = id;
+        this.via = via;
         this.idVia = idVia;
+        this.usuario = usuario;
         this.idUsuario = idUsuario;
-        this.comentario = comentario;
-        this.calificacion = calificacion;
         this.fecha = fecha;
     }
 
@@ -77,22 +68,6 @@ public class Resenia implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public double getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(double calificacion) {
-        this.calificacion = calificacion;
-    }
-
     public String getFecha() {
         return fecha;
     }
@@ -103,16 +78,13 @@ public class Resenia implements Serializable {
 
     @Override
     public String toString() {
-        return "Resenia{" +
+        return "Favorito{" +
                 "id=" + id +
                 ", via=" + via +
                 ", idVia=" + idVia +
                 ", usuario=" + usuario +
                 ", idUsuario=" + idUsuario +
-                ", comentario='" + comentario + '\'' +
-                ", calificacion=" + calificacion +
-                ", fecha=" + fecha +
+                ", fecha='" + fecha + '\'' +
                 '}';
     }
 }
-

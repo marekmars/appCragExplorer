@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +19,10 @@ import android.view.ViewGroup;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.databinding.FragmentViaBinding;
-import com.heissen.cragexplorer.databinding.FragmentZonaBinding;
 import com.heissen.cragexplorer.models.Via;
-import com.heissen.cragexplorer.models.Zona;
-import com.heissen.cragexplorer.ui.home.vias.agregarImg.AgregarImagenFragment;
-import com.heissen.cragexplorer.ui.home.vias.resenias.ReseniasFragment;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import com.heissen.cragexplorer.ui.home.vias.agregarSesion.AgregarSesionFragment;
+import com.heissen.cragexplorer.ui.home.vias.resenias.ReseniasFragment;
 
 public class ViaFragment extends Fragment {
 
@@ -50,6 +45,7 @@ public class ViaFragment extends Fragment {
         vm = new ViewModelProvider(this).get(ViaViewModel.class);
         binding = FragmentViaBinding.inflate(getLayoutInflater());
         via = bundle.getSerializable("via", Via.class);
+        vm.chquearFavorito(via.getId());
         vm.getFotosVia(via.getId());
         vm.getCalificacionVia(via.getId());
         vm.setEstilo(via.getIdEstilo());
@@ -61,7 +57,6 @@ public class ViaFragment extends Fragment {
         binding.tvMetrosVia.setText(via.getAltura() + "");
         binding.tvChapasVia.setText(via.getChapas() + "");
 
-        vm.getmDrawable().observe(getViewLifecycleOwner(), drawable -> binding.imgCalificacionVia.setImageDrawable(drawable));
         vm.getmDrawableEstilo().observe(getViewLifecycleOwner(), drawable -> binding.imgEstiloVia.setImageDrawable(drawable));
         vm.getmSlideModel().observe(getViewLifecycleOwner(), slideModels -> {
             binding.imgSliderSectorVia.setImageList(slideModels, ScaleTypes.CENTER_CROP);
@@ -75,7 +70,7 @@ public class ViaFragment extends Fragment {
                 Navigation.findNavController(requireView()).navigate(R.id.action_viaFragment_to_zonaFragment, bundleBack);
             }
         });
-
+        vm.getmCalificacion().observe(getViewLifecycleOwner(),calificacion -> binding.ratingBarSector.setRating(calificacion.floatValue()));
         binding.linearCalificaciones.setOnClickListener(v -> {
             ReseniasFragment reseniasFragment = new ReseniasFragment();
             reseniasFragment.setArguments(bundle);
@@ -84,10 +79,16 @@ public class ViaFragment extends Fragment {
         });
 
         binding.btnAddImg.setOnClickListener(v -> {
-            AgregarImagenFragment agregarImagenFragment = new AgregarImagenFragment();
+            AgregarSesionFragment agregarImagenFragment = new AgregarSesionFragment();
             agregarImagenFragment.setArguments(bundle);
-            agregarImagenFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle);
+            agregarImagenFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialogStyle);
             agregarImagenFragment.show(getChildFragmentManager(), "dialogoAgregar");
+        });
+        binding.btnFavorito.setOnClickListener(v -> {
+            vm.agregarFavorito(via.getId());
+        });
+        vm.getmImagen().observe(getViewLifecycleOwner(), image -> {
+            binding.btnFavorito.setImageDrawable(image);
         });
         return binding.getRoot();
     }
@@ -95,7 +96,11 @@ public class ViaFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("salida","RESUMIO");
+        vm.getFotosVia(via.getId());
+        vm.getmSlideModel().observe(getViewLifecycleOwner(), slideModels -> {
+            binding.imgSliderSectorVia.setImageList(slideModels, ScaleTypes.CENTER_CROP);
+        });
+
     }
 
     @Override
@@ -104,13 +109,13 @@ public class ViaFragment extends Fragment {
 
         // TODO: Use the ViewModel
     }
-    public void onDialogDismissed() {
+   /* public void onDialogDismissed() {
         vm.getFotosVia(via.getId());
         vm.getmSlideModel().observe(getViewLifecycleOwner(), slideModels -> {
             binding.imgSliderSectorVia.setImageList(slideModels, ScaleTypes.CENTER_CROP);
         });
         Log.d("salida","Salio del dialogo");
-    }
+    }*/
 
 
 

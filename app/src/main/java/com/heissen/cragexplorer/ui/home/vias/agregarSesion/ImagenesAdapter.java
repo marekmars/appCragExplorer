@@ -1,4 +1,4 @@
-package com.heissen.cragexplorer.ui.home.vias.agregarImg;
+package com.heissen.cragexplorer.ui.home.vias.agregarSesion;
 
 import android.content.Context;
 import android.net.Uri;
@@ -6,18 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.heissen.cragexplorer.R;
-import com.heissen.cragexplorer.models.Resenia;
-import com.heissen.cragexplorer.request.ApiService;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ImagenesAdapter extends RecyclerView.Adapter<ImagenesAdapter.ViewHolder> {

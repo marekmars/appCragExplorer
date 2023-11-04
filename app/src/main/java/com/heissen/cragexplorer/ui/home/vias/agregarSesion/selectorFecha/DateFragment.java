@@ -1,34 +1,26 @@
-package com.heissen.cragexplorer.ui.home.vias.agregarImg.selectorFecha;
+package com.heissen.cragexplorer.ui.home.vias.agregarSesion.selectorFecha;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CalendarView;
-import android.widget.DatePicker;
 
-import com.heissen.cragexplorer.R;
-import com.heissen.cragexplorer.databinding.FragmentAgregarImagenBinding;
 import com.heissen.cragexplorer.databinding.FragmentDateBinding;
-import com.heissen.cragexplorer.ui.home.vias.ViaFragment;
-import com.heissen.cragexplorer.ui.home.vias.agregarImg.AgregarImagenFragment;
-import com.heissen.cragexplorer.ui.home.vias.agregarImg.AgregarImagenViewModel;
+import com.heissen.cragexplorer.ui.home.vias.agregarSesion.AgregarSesionFragment;
+
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 public class DateFragment extends DialogFragment {
     private DateViewModel vm;
@@ -41,11 +33,12 @@ public class DateFragment extends DialogFragment {
         vm = new ViewModelProvider(this).get(DateViewModel.class);
 
         binding.calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 LocalDateTime selectedDate = LocalDateTime.of(year, month + 1, dayOfMonth, 0, 0);
-                // Llama al método de la actividad principal para actualizar la variable
-                ((AgregarImagenFragment) getParentFragment()).updateSelectedDate(selectedDate);
+                ((AgregarSesionFragment) getParentFragment()).updateSelectedDate(selectedDate);
             }
         });
         return binding.getRoot();

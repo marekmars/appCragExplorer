@@ -40,8 +40,7 @@ public class DetalleSectorViewModel extends AndroidViewModel {
     private MutableLiveData<Sector> mSector;
     private MutableLiveData<String> mCiudad;
     private MutableLiveData<String> mProvincia;
-
-    private MutableLiveData<Drawable> mDrawable;
+    private MutableLiveData<Double> mCalificacion;
 
     private MutableLiveData<ArrayList<SlideModel>> mSlideModel;
     private MutableLiveData<String> mPais;
@@ -52,18 +51,14 @@ public class DetalleSectorViewModel extends AndroidViewModel {
         super(application);
         context = application;
         mSector = new MutableLiveData<>();
-
         mCiudad = new MutableLiveData<>();
         mPais = new MutableLiveData<>();
         mProvincia = new MutableLiveData<>();
         mSlideModel = new MutableLiveData<>(new ArrayList<>());
-        mDrawable = new MutableLiveData<>();
         mZonas=new MutableLiveData<>();
+        mCalificacion=new MutableLiveData<>();
     }
 
-    public LiveData<Drawable> getmDrawable() {
-        return mDrawable;
-    }
 
     public LiveData<Sector> getmSector() {
         return mSector;
@@ -83,6 +78,10 @@ public class DetalleSectorViewModel extends AndroidViewModel {
 
     public LiveData<List<Zona>> getmZonas() {
         return mZonas;
+    }
+
+    public LiveData<Double> getmCalificacion() {
+        return mCalificacion;
     }
 
     public LiveData<ArrayList<SlideModel>> getmSlideModel() {
@@ -175,29 +174,7 @@ public class DetalleSectorViewModel extends AndroidViewModel {
             public void onResponse(Call<Double> call, Response<Double> response) {
                 if (response.isSuccessful()) {
                     Log.d("salida", response.body().toString());
-                    if (response.body() == 0) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cero_e));
-                    } else if (response.body() == 0.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cero_media_e));
-                    } else if (response.body() == 1) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.una_e));
-                    } else if (response.body() == 1.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.una_media_e));
-                    } else if (response.body() == 2) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.dos_e));
-                    } else if (response.body() == 2.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.dos_media_e));
-                    } else if (response.body() == 3) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.tres_e));
-                    } else if (response.body() == 3.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.tres_media_e));
-                    } else if (response.body() == 4) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cuatro_e));
-                    } else if (response.body() == 4.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cuatro_media_e));
-                    } else if (response.body() == 5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cinco_e));
-                    }
+                    mCalificacion.setValue(response.body());
 
                 } else {
                     Log.d("salida", response.raw().message());

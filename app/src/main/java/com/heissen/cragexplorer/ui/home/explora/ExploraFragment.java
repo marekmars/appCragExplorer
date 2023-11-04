@@ -68,6 +68,7 @@ public class ExploraFragment extends Fragment implements OnMapReadyCallback {
     private void updateFragmentContent(int id) {
         Bundle bundle = new Bundle();
         bundle.putInt("idSector", id);
+        bundle.putInt("fragmentAnterior",R.id.action_detalleSectorFragment_to_navigation_home_explora);
         Log.d("salida", getActivity().getSupportFragmentManager() + "");
         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_container);
         navController.navigate(R.id.detalleSectorFragment, bundle);

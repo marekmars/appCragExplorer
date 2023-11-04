@@ -26,6 +26,7 @@ import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.databinding.FragmentDetalleSectorBinding;
 import com.heissen.cragexplorer.databinding.FragmentHomeBinding;
 
+import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 public class DetalleSectorFragment extends Fragment {
@@ -39,11 +40,17 @@ public class DetalleSectorFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentDetalleSectorBinding.inflate(inflater, container, false);
         vm = new ViewModelProvider(this).get(DetalleSectorViewModel.class);
         Bundle bundle = getArguments();
+        int idFragmentAnterior=bundle.getInt("fragmentAnterior");
         vm.getSector(bundle);
    /*     vm.getFotosSector(bundle);*/
         getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
@@ -76,8 +83,9 @@ public class DetalleSectorFragment extends Fragment {
         binding.btnBackSector.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigate(R.id.action_detalleSectorFragment_to_navigation_home_explora);
         });
-        vm.getmDrawable().observe(getViewLifecycleOwner(),drawable -> binding.imgCalificacionSector.setImageDrawable(drawable));
-
+       /* binding.btnBackSector.setOnClickListener(v -> {
+            Navigation.findNavController(v).popBackStack();
+        });*/
         vm.getmZonas().observe(getViewLifecycleOwner(), zonas -> {
 
             GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(), 1,GridLayoutManager.VERTICAL,false);
@@ -91,6 +99,7 @@ public class DetalleSectorFragment extends Fragment {
                 Navigation.findNavController(requireView()).navigate(R.id.action_detalleSectorFragment_to_navigation_home_explora);
             }
         });
+        vm.getmCalificacion().observe(getViewLifecycleOwner(),calificacion -> binding.ratingBarSector.setRating(calificacion.floatValue()));
         return binding.getRoot();
 
     }
@@ -101,5 +110,10 @@ public class DetalleSectorFragment extends Fragment {
         vm = new ViewModelProvider(this).get(DetalleSectorViewModel.class);
         // TODO: Use the ViewModel
     }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
 
 }

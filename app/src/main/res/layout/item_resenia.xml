@@ -72,13 +72,16 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/imgEstrellasResenia"
-            android:layout_width="260dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/ratingBarResenia"
+            style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:numStars="5"
+            android:progressTint="@color/orange"
+            android:stepSize="0.1"
+            android:isIndicator="true"/>
 
         <TextView
             android:id="@+id/tvFechaResenia"

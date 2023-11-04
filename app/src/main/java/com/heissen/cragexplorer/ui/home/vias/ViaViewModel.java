@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModel;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.heissen.cragexplorer.R;
+import com.heissen.cragexplorer.models.Favorito;
 import com.heissen.cragexplorer.models.Sector;
 import com.heissen.cragexplorer.models.Via;
 import com.heissen.cragexplorer.request.ApiService;
@@ -29,15 +31,21 @@ import retrofit2.Response;
 
 public class ViaViewModel extends AndroidViewModel {
     private MutableLiveData<ArrayList<SlideModel>> mSlideModel;
-    private MutableLiveData<Drawable> mDrawable;
+
     private MutableLiveData<Drawable> mDrawableEstilo;
+    private MutableLiveData<Double> mCalificacion;
+
+    private MutableLiveData<Drawable> mImagen;
+
     private Context context;
 
     public ViaViewModel(@NonNull Application application) {
         super(application);
         mSlideModel = new MutableLiveData<>(new ArrayList<>());
-        mDrawable = new MutableLiveData<>();
+        mCalificacion = new MutableLiveData<>();
         mDrawableEstilo = new MutableLiveData<>();
+
+        mImagen = new MutableLiveData<>();
         context = application;
     }
 
@@ -45,13 +53,19 @@ public class ViaViewModel extends AndroidViewModel {
         return mSlideModel;
     }
 
-    public LiveData<Drawable> getmDrawable() {
-        return mDrawable;
+    public LiveData<Double> getmCalificacion() {
+        return mCalificacion;
     }
 
     public LiveData<Drawable> getmDrawableEstilo() {
         return mDrawableEstilo;
     }
+
+    public LiveData<Drawable> getmImagen() {
+        return mImagen;
+    }
+
+
 
     public void getFotosVia(int idVia) {
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
@@ -95,30 +109,7 @@ public class ViaViewModel extends AndroidViewModel {
             public void onResponse(Call<Double> call, Response<Double> response) {
                 if (response.isSuccessful()) {
                     Log.d("salida", response.body().toString());
-                    if (response.body() == 0) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cero_e));
-                    } else if (response.body() == 0.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cero_media_e));
-                    } else if (response.body() == 1) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.una_e));
-                    } else if (response.body() == 1.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.una_media_e));
-                    } else if (response.body() == 2) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.dos_e));
-                    } else if (response.body() == 2.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.dos_media_e));
-                    } else if (response.body() == 3) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.tres_e));
-                    } else if (response.body() == 3.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.tres_media_e));
-                    } else if (response.body() == 4) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cuatro_e));
-                    } else if (response.body() == 4.5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cuatro_media_e));
-                    } else if (response.body() == 5) {
-                        mDrawable.setValue(ContextCompat.getDrawable(context, R.drawable.cinco_e));
-                    }
-
+                    mCalificacion.setValue(response.body());
                 } else {
                     Log.d("salida", response.raw().message());
                 }
@@ -131,6 +122,59 @@ public class ViaViewModel extends AndroidViewModel {
         });
     }
 
+    public void agregarFavorito(int idVia) {
+        ApiService.ApiInterface apiService = ApiService.getApiInferface();
+        String token = ApiService.leerToken(getApplication());
+        Call<Favorito> llamada = apiService.agregarBorrarFavorito(token, idVia);
+        llamada.enqueue(new Callback<Favorito>() {
+            @Override
+            public void onResponse(Call<Favorito> call, Response<Favorito> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        mImagen.setValue(getApplication().getResources().getDrawable(R.drawable.baseline_favorite_24));
+                        Log.d("salida", response.body().toString());
+                    }else{
+                        mImagen.setValue(getApplication().getResources().getDrawable(R.drawable.baseline_favorite_border_24));
+                    }
+                } else {
+                    Log.d("salida", response.raw().message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Favorito> call, Throwable t) {
+                Log.d("salida", t.getMessage());
+            }
+        });
+
+    }
+    public void chquearFavorito(int idVia) {
+        ApiService.ApiInterface apiService = ApiService.getApiInferface();
+        String token = ApiService.leerToken(getApplication());
+        Call<Favorito> llamada = apiService.chequearFavorito(token, idVia);
+        llamada.enqueue(new Callback<Favorito>() {
+            @Override
+            public void onResponse(Call<Favorito> call, Response<Favorito> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        mImagen.setValue(getApplication().getResources().getDrawable(R.drawable.baseline_favorite_24));
+                        Log.d("salida", response.body().toString());
+                    }else{
+                        mImagen.setValue(getApplication().getResources().getDrawable(R.drawable.baseline_favorite_border_24));
+                    }
+                } else {
+                    Log.d("salida", response.raw().message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Favorito> call, Throwable t) {
+                Log.d("salida", t.getMessage());
+            }
+        });
+
+    }
+
     public void setEstilo(int idEstilo) {
         switch (idEstilo) {
             case 1:
@@ -138,10 +182,10 @@ public class ViaViewModel extends AndroidViewModel {
                 break;
             case 2:
                 mDrawableEstilo.setValue(ContextCompat.getDrawable(context, R.drawable.ic_desplome));
-            break;
+                break;
             case 3:
                 mDrawableEstilo.setValue(ContextCompat.getDrawable(context, R.drawable.ic_slab));
-            break;
+                break;
         }
     }
 }

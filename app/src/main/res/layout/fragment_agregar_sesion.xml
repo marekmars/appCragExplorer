@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorTransparent"
+        android:elevation="4dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorTransparent"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorTransparent"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTransparent"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvTituloAgregarImagen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Agregar Sesion"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.503"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textLayoutFecha"
+                        android:layout_width="369dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorTransparent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        app:boxBackgroundMode="none"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTituloAgregarImagen">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/etFechaAgregar"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rounded_background"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:hint="Fecha"
+                                android:inputType="date"
+                                android:padding="10dp"
+                                android:paddingLeft="0dp"
+                                android:textSize="16dp"
+                                app:fontFamily="@font/laca_regular"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageButton
+                                android:id="@+id/btnDatePicker"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_pressed"
+                                android:src="@drawable/baseline_date_range_24"
+                                app:layout_constraintBottom_toBottomOf="@+id/etFechaAgregar"
+                                app:layout_constraintEnd_toEndOf="@+id/etFechaAgregar"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="@+id/etFechaAgregar"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="Tipo"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textLayoutFecha" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout8"
+                        android:layout_width="372dp"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+
+                        <Button
+                            android:id="@+id/btnOnsight"
+                            android:layout_width="67dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_pressed_border"
+                            android:drawableTop="@drawable/ic_onsight"
+                            android:padding="5dp"
+                            android:paddingTop="5dp"
+                            android:scaleType="fitCenter"
+                            android:text="Onsight"
+                            android:textAllCaps="false"
+                            android:textSize="10sp"
+                            app:fontFamily="@font/laca_regular" />
+
+                        <Button
+                            android:id="@+id/btnRedpoint"
+                            android:layout_width="67dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_pressed_border"
+                            android:drawableTop="@drawable/ic_redpoint"
+                            android:paddingTop="5dp"
+                            android:scaleType="fitCenter"
+                            android:text="Redpoint"
+                            android:textAllCaps="false"
+                            android:textSize="10sp"
+                            app:fontFamily="@font/laca_regular" />
+
+                        <Button
+                            android:id="@+id/btnFlash"
+                            android:layout_width="67dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_pressed_border"
+                            android:drawableTop="@drawable/ic_flash"
+                            android:paddingTop="5dp"
+                            android:scaleType="fitCenter"
+                            android:text="Flash"
+                            android:textAllCaps="false"
+                            android:textSize="10sp"
+                            app:fontFamily="@font/laca_regular" />
+
+                        <Button
+                            android:id="@+id/btnProyect"
+                            android:layout_width="67dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_pressed_border"
+                            android:drawableTop="@drawable/ic_proyect"
+                            android:paddingTop="5dp"
+                            android:scaleType="fitCenter"
+                            android:text="Proyecto"
+                            android:textAllCaps="false"
+                            android:textSize="10sp"
+                            app:fontFamily="@font/laca_regular" />
+
+                        <Button
+                            android:id="@+id/btnRepite"
+                            android:layout_width="67dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_pressed_border"
+                            android:drawableTop="@drawable/baseline_repeat_24"
+                            android:paddingTop="5dp"
+                            android:scaleType="fitCenter"
+                            android:text="Repeticion"
+                            android:textAllCaps="false"
+                            android:textSize="10sp"
+                            app:fontFamily="@font/laca_regular" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:layout_weight="1"
+                        android:text="Calificación"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout6"
+                        android:layout_width="374dp"
+                        android:layout_height="43dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                            android:id="@+id/ratingBarAgregarSesion"
+                            style="@style/Widget.MaterialRatingBar.RatingBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:numStars="5"
+                            android:progressTint="@color/orange"
+                            android:rating="1.0"
+                            android:stepSize="1.0" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:layout_weight="1"
+                        android:text="Cantidad de Intentos"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.014"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textLayoutIntentos"
+                        android:layout_width="369dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorTransparent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        app:boxBackgroundMode="none"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clIntentos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/etIntentosAgregar"
+                                android:layout_width="368dp"
+                                android:layout_height="52dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/rounded_background"
+
+                                android:ems="10"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:hint="Cantidad de intentos"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/material_dynamic_neutral20"
+                                android:textSize="16dp"
+                                app:fontFamily="@font/laca_regular"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageButton
+                                android:id="@+id/btnIntentosjeMas"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_pressed"
+                                android:src="@drawable/baseline_add_24"
+                                app:layout_constraintBottom_toBottomOf="@+id/etIntentosAgregar"
+                                app:layout_constraintEnd_toEndOf="@+id/etIntentosAgregar"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="@+id/etIntentosAgregar"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0"
+                                />
+
+                            <ImageButton
+                                android:id="@+id/btnIntentosjeMenos"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_pressed"
+                                android:src="@drawable/baseline_horizontal_rule_24"
+                                app:layout_constraintBottom_toBottomOf="@+id/etIntentosAgregar"
+                                app:layout_constraintEnd_toEndOf="@+id/etIntentosAgregar"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="@+id/etIntentosAgregar"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="Porcentaje Completado"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.014"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textLayoutIntentos" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textLayoutPorcentaje"
+                        android:layout_width="369dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorTransparent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+                        app:boxBackgroundMode="none"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/etPorcentajeAgregar"
+                                android:layout_width="368dp"
+                                android:layout_height="52dp"
+                                android:layout_weight="1"
+
+                                android:background="@drawable/rounded_background"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:hint="Porcentaje Completado"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/material_dynamic_neutral20"
+                                android:textSize="16dp"
+                                app:fontFamily="@font/laca_regular"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageButton
+                                android:id="@+id/btnPorcentajeMas"
+                                android:layout_width="50dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_pressed"
+                                android:src="@drawable/baseline_add_24"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageButton
+                                android:id="@+id/btnPorcentajeMenos"
+                                android:layout_width="50dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_pressed"
+                                android:src="@drawable/baseline_horizontal_rule_24"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Cargar Fotos"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.006"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etComentario" />
+
+                    <EditText
+                        android:id="@+id/etComentario"
+                        android:layout_width="365dp"
+                        android:layout_height="105dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_background"
+                        android:ems="10"
+                        android:enabled="true"
+                        android:gravity="start"
+                        android:hint="Comentario"
+                        android:inputType="textMultiLine"
+                        android:maxLength="300"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="16dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.36"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textLayoutPorcentaje"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/textView12"
+                        tools:layout_editor_absoluteX="10dp">
+
+                        <ImageButton
+                            android:id="@+id/btnAgregarImg"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/button_pressed"
+                            android:backgroundTint="@color/material_dynamic_neutral40"
+                            android:backgroundTintMode="add"
+                            android:src="@drawable/baseline_add_a_photo_24_grey" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvImagenes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_weight="0"
+                            android:maxWidth="259dp">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/btnAgregar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rounded_background__button"
+                        android:text="Agregar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+                        app:layout_goneMarginTop="0dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
