@@ -63,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLoginGoogle.setOnClickListener(v -> {
             googleSignIn();
         });
+        binding.btnRecupero.setOnClickListener(v -> {
+            intent = new Intent(this, RecuperoActivity.class);
+            startActivity(intent);
+        });
+
 
         setContentView(binding.getRoot());
     }

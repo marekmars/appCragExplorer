@@ -99,6 +99,9 @@ public class ApiService {
 
         @POST(URL_USERS + "login-google")
         Call<String> loginGoogle(@Body Usuario usuario);
+        @FormUrlEncoded
+        @POST(URL_USERS+"recupero")
+        Call<String> inciarRecupero(@Field("correo") String correo);
 
         //Metodos Sectores
         @GET(URL_SECTORES + "sectores")
