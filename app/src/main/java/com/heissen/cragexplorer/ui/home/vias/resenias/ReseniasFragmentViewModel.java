@@ -40,7 +40,7 @@ public class ReseniasFragmentViewModel extends AndroidViewModel {
             public void onResponse(Call<ArrayList<Resenia>> call, Response<ArrayList<Resenia>> response) {
                 if (response.isSuccessful()) {
                     mResenias.setValue(response.body());
-                    Log.d("salida", response.body()+"");
+
                 } else {
                     Log.d("salida", response.raw().message());
                 }

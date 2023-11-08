@@ -62,6 +62,29 @@
         <action
             android:id="@+id/action_viaFragment_to_zonaFragment"
             app:destination="@id/zonaFragment" />
+        <action
+            android:id="@+id/action_viaFragment_to_agregarSesionFragment2"
+            app:destination="@id/agregarSesionFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregarSesionFragment2"
+        android:name="com.heissen.cragexplorer.ui.home.vias.agregarSesion.AgregarSesionFragment"
+        android:label="AgregarSesionFragment" >
+        <action
+            android:id="@+id/action_agregarSesionFragment2_to_viaFragment"
+            app:destination="@id/viaFragment" />
+        <action
+            android:id="@+id/action_agregarSesionFragment2_to_sesionEditarFragment2"
+            app:destination="@id/sesionEditarFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/sesionEditarFragment2"
+        android:name="com.heissen.cragexplorer.ui.loogbook.sesionDetalle.sesionEditar.SesionEditarFragment"
+        android:label="fragment_sesion_editar"
+        tools:layout="@layout/fragment_sesion_editar" >
+        <action
+            android:id="@+id/action_sesionEditarFragment2_to_agregarSesionFragment2"
+            app:destination="@id/agregarSesionFragment2" />
     </fragment>
 
 </navigation>

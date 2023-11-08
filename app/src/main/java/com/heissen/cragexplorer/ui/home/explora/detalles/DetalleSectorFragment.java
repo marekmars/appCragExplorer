@@ -53,7 +53,7 @@ public class DetalleSectorFragment extends Fragment {
         int idFragmentAnterior=bundle.getInt("fragmentAnterior");
         vm.getSector(bundle);
    /*     vm.getFotosSector(bundle);*/
-        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
+/*        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);*/
         getActivity().findViewById(R.id.nav_view_home).setVisibility(View.GONE);
 
         vm.getmSector().observe(getViewLifecycleOwner(), sector -> {
@@ -104,12 +104,7 @@ public class DetalleSectorFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        vm = new ViewModelProvider(this).get(DetalleSectorViewModel.class);
-        // TODO: Use the ViewModel
-    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

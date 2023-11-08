@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Sesion  {
+public class Sesion implements Serializable {
 
 
     private int id;
@@ -16,7 +16,7 @@ public class Sesion  {
 
     private int idVia;
 
-
+private Via via;
     private double porcentaje;
 
 
@@ -37,6 +37,23 @@ public class Sesion  {
         this.fecha = fecha;
         this.idTipo = idTipo;
         this.intentos = intentos;
+    }
+
+    public Sesion(int id, int idVia, double porcentaje, String fecha, int idTipo, int intentos) {
+        this.id = id;
+        this.idVia = idVia;
+        this.porcentaje = porcentaje;
+        this.fecha = fecha;
+        this.idTipo = idTipo;
+        this.intentos = intentos;
+    }
+
+    public Via getVia() {
+        return via;
+    }
+
+    public void setVia(Via via) {
+        this.via = via;
     }
 
     public int getId() {
@@ -102,7 +119,7 @@ public class Sesion  {
                 ", idUsuario=" + idUsuario +
                 ", idVia=" + idVia +
                 ", porcentaje=" + porcentaje +
-                ", fecha=" + fecha +
+                ", fecha='" + fecha + '\'' +
                 ", idTipo=" + idTipo +
                 ", intentos=" + intentos +
                 '}';

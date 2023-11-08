@@ -58,7 +58,7 @@ public class Zona implements Serializable {
         return "Zona{" +
                 "id=" + id +
                 ", idSector=" + idSector +
-                ", sector=" + sector +
+                ", sector=" + sector.toString() +
                 ", nombre='" + nombre + '\'' +
                 '}';
     }

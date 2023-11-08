@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -59,6 +60,7 @@ public class SectoresAdapter extends RecyclerView.Adapter<SectoresAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull SectoresAdapter.ViewHolder holder, int position) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         final String[] imageUrl = {""};
         List<Address> addresses = null;
         try {
@@ -73,6 +75,7 @@ public class SectoresAdapter extends RecyclerView.Adapter<SectoresAdapter.ViewHo
             holder.pais.setText(address.getCountryName());
         }
         holder.nombre.setText(sectors.get(position).getNombre());
+
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
         String token = ApiService.leerToken(context);
         Call<ResponseBody> llamada = apiService.getFotoSector(token, sectors.get(position).getId());

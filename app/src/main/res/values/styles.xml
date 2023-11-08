@@ -28,4 +28,5 @@
         <item name="android:layout_gravity">top</item> <!-- Gravedad para centrar el diálogo en la pantalla -->
     </style>
 
+
 </resources>

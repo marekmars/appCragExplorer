@@ -78,11 +78,12 @@ public class ViaFragment extends Fragment {
             reseniasFragment.show(getChildFragmentManager(), "DialogPersonalizado");
         });
 
-        binding.btnAddImg.setOnClickListener(v -> {
-            AgregarSesionFragment agregarImagenFragment = new AgregarSesionFragment();
+        binding.btnAddSesion.setOnClickListener(v -> {
+            /*AgregarSesionFragment agregarImagenFragment = new AgregarSesionFragment();
             agregarImagenFragment.setArguments(bundle);
             agregarImagenFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialogStyle);
-            agregarImagenFragment.show(getChildFragmentManager(), "dialogoAgregar");
+            agregarImagenFragment.show(getChildFragmentManager(), "dialogoAgregar");*/
+            Navigation.findNavController(getView()).navigate(R.id.action_viaFragment_to_agregarSesionFragment2,bundle);
         });
         binding.btnFavorito.setOnClickListener(v -> {
             vm.agregarFavorito(via.getId());

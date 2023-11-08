@@ -37,6 +37,14 @@ public class Resenia implements Serializable {
         this.fecha = fecha;
     }
 
+    public Resenia(int id, int idVia, String comentario, double calificacion, String fecha) {
+        this.id = id;
+        this.idVia = idVia;
+        this.comentario = comentario;
+        this.calificacion = calificacion;
+        this.fecha = fecha;
+    }
+
     public int getId() {
         return id;
     }

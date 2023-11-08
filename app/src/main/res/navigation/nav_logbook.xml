@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_logbook"
+    app:startDestination="@id/navigation_log_ascensos">
+
+    <fragment
+        android:id="@+id/navigation_log_proyectos"
+        android:name="com.heissen.cragexplorer.ui.loogbook.poyectos.ProyectoFragment"
+        android:label="fragment_proyecto"
+        tools:layout="@layout/fragment_proyecto" >
+        <action
+            android:id="@+id/action_proyectoFragment_to_sesionDetalleFragment"
+            app:destination="@id/sesionDetalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_log_ascensos"
+        android:name="com.heissen.cragexplorer.ui.loogbook.ascensos.AscensoFragment"
+        android:label="fragment_ascenso"
+        tools:layout="@layout/fragment_ascenso" >
+        <action
+            android:id="@+id/action_ascensoFragment_to_sesionDetalleFragment"
+            app:destination="@id/sesionDetalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sesionDetalleFragment"
+        android:name="com.heissen.cragexplorer.ui.loogbook.sesionDetalle.SesionDetalleFragment"
+        android:label="fragment_sesion_detalle"
+        tools:layout="@layout/fragment_sesion_detalle" >
+        <action
+            android:id="@+id/action_sesionDetalleFragment_to_proyectoFragment"
+            app:destination="@id/navigation_log_proyectos" />
+        <action
+            android:id="@+id/action_sesionDetalleFragment_to_ascensoFragment"
+            app:destination="@id/navigation_log_ascensos" />
+        <action
+            android:id="@+id/action_sesionDetalleFragment_to_sesionEditarFragment"
+            app:destination="@id/sesionEditarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sesionEditarFragment"
+        android:name="com.heissen.cragexplorer.ui.loogbook.sesionDetalle.sesionEditar.SesionEditarFragment"
+        android:label="fragment_sesion_editar"
+        tools:layout="@layout/fragment_sesion_editar" >
+        <action
+            android:id="@+id/action_sesionEditarFragment_to_sesionDetalleFragment"
+            app:destination="@id/sesionDetalleFragment" />
+    </fragment>
+</navigation>

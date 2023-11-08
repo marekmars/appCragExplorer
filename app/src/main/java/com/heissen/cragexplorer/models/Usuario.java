@@ -83,4 +83,7 @@ public class Usuario {
     public void setGoogle(boolean google) {
         this.google = google;
     }
+
+
+
 }

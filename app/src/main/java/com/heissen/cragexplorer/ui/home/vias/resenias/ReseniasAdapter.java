@@ -56,6 +56,7 @@ public class ReseniasAdapter extends RecyclerView.Adapter<ReseniasAdapter.ViewHo
 
         holder.tvFechaResenia.setText(LocalDateTime.parse(resenias.get(position).getFecha()).format(formatoFecha));
         holder.tvComentarioResenia.setText(resenias.get(position).getComentario());
+
     }
 
     @Override

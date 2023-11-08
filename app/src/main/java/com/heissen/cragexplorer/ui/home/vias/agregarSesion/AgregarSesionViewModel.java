@@ -17,8 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 
 import com.heissen.cragexplorer.LoginActivity;
+import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.models.Resenia;
 import com.heissen.cragexplorer.models.Sesion;
 import com.heissen.cragexplorer.models.Usuario;
@@ -30,6 +32,7 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +44,8 @@ public class AgregarSesionViewModel extends AndroidViewModel {
     private MutableLiveData<Uri> mImgUri;
     private ApiService.ApiInterface apiService;
 
+    private MutableLiveData<Boolean>mFlag;
+    private MutableLiveData<Boolean>mFlag2;
     private MutableLiveData<Integer> mIntentos;
 
     private MutableLiveData<Integer> mPorcentaje;
@@ -54,6 +59,8 @@ public class AgregarSesionViewModel extends AndroidViewModel {
         token = ApiService.leerToken(getApplication());
         mPorcentaje = new MutableLiveData<>(10);
         mIntentos = new MutableLiveData<>(1);
+        mFlag=new MutableLiveData<>();
+        mFlag2=new MutableLiveData<>();
     }
 
     public LiveData<ArrayList<Uri>> getmUrliList() {
@@ -66,6 +73,13 @@ public class AgregarSesionViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getmIntentos() {
         return mIntentos;
+    }
+
+    public LiveData<Boolean> getmFlag() {
+        return mFlag;
+    }
+    public LiveData<Boolean> getmFlag2() {
+        return mFlag2;
     }
 
     public String convertirImgBase64(Uri uri) {
@@ -146,14 +160,14 @@ public class AgregarSesionViewModel extends AndroidViewModel {
                         Log.d("salida", "TODO OK");
 
                     } else {
-                        Log.d("salida", "ELSE " + response.raw());
+                        Log.d("salida", "ELSE imagen " + response.raw());
 
                     }
                 }
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Log.d("salida", "ERROR " + t.getMessage());
+                    Log.d("salida", "ERROR Imagen " + t.getMessage());
 
                 }
             });
@@ -201,7 +215,6 @@ public class AgregarSesionViewModel extends AndroidViewModel {
 
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
 
-        Log.d("salida", sesion.toString());
 
         Call<Sesion> llamada = apiService.agregarSesion(token, sesion);
 
@@ -209,37 +222,29 @@ public class AgregarSesionViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Sesion> call, Response<Sesion> response) {
                 if (response.isSuccessful()) {
-                    Log.d("salida", sesion.toString());
-
+                    mFlag2.setValue(true);
+                    Log.d("salida", "respuesta: "+mFlag2.getValue());
                 } else {
-                    Log.d("salida", "ELSE " + response.raw());
+                    Log.d("salida", "ELSE Sesion" + response.raw());
 
                 }
             }
 
             @Override
             public void onFailure(Call<Sesion> call, Throwable t) {
-                Log.d("salida", "ERROR " + t.getMessage());
+                Log.d("salida", "ERROR Sesion: " + t.getMessage());
             }
         });
     }
 
     public void cargarResenia(Resenia resenia) {
-        if (resenia.getIdVia() <= 0) {
-            Toast.makeText(getApplication(), "idVia no válido", Toast.LENGTH_SHORT).show();
-        }
-        if (resenia.getCalificacion() <= 0 || resenia.getCalificacion() > 5) {
-            Toast.makeText(getApplication(), "Calificacion no válida", Toast.LENGTH_SHORT).show();
-
-        }
-        if (resenia.getFecha() == null) {
-            Toast.makeText(getApplication(), "La fecha no puede ser nula", Toast.LENGTH_SHORT).show();
-
+        if (resenia.getIdVia() <= 0||resenia.getCalificacion() <= 0 || resenia.getCalificacion() > 5||
+                resenia.getFecha() == null) {
+           Log.d("salida","No se creo la reseña");
+            return;
         }
 
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
-
-        Log.d("salida", "Resenia: "+resenia.toString());
 
         Call<Resenia> llamada = apiService.agregarResenia(token, resenia);
 
@@ -247,20 +252,20 @@ public class AgregarSesionViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Resenia> call, Response<Resenia> response) {
                 if (response.isSuccessful()) {
-                    Log.d("salida", resenia.toString());
 
                 } else {
-                    Log.d("salida", "ELSE " + response.raw());
-                    Log.d("salida", "ELSE " + response.toString());
-                    Log.d("salida", "ELSE " + response.code());
-                    Log.d("salida", "ELSE " + response.toString());
+                   if(response.code()==409){
+                       mFlag.setValue(true);
+                       Log.d("salida","ENTRO 409 "+mFlag.getValue());
+                   }
 
                 }
             }
 
             @Override
             public void onFailure(Call<Resenia> call, Throwable t) {
-                Log.d("salida", "ERROR " + t.getMessage());
+                Log.d("salida", "ERROR Resenia " + t.getMessage());
+
             }
         });
     }

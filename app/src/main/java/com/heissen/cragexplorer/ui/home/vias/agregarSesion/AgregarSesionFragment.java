@@ -1,14 +1,17 @@
 package com.heissen.cragexplorer.ui.home.vias.agregarSesion;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CalendarView;
 import android.widget.RatingBar;
 
 import com.heissen.cragexplorer.R;
@@ -34,10 +38,13 @@ import com.heissen.cragexplorer.ui.home.vias.ViaFragment;
 import com.heissen.cragexplorer.ui.home.vias.agregarSesion.selectorFecha.DateFragment;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class AgregarSesionFragment extends DialogFragment {
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+public class AgregarSesionFragment extends Fragment {
     private AgregarSesionViewModel vm;
     private FragmentAgregarSesionBinding binding;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
@@ -58,11 +65,13 @@ public class AgregarSesionFragment extends DialogFragment {
         binding = FragmentAgregarSesionBinding.inflate(getLayoutInflater());
         vm = new ViewModelProvider(this).get(AgregarSesionViewModel.class);
         porcentaje = 10;
-        calificacion=1;
         intentos = 1;
         selectedDate=LocalDateTime.now();
         formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        binding.etFechaAgregar.setText(selectedDate.format(formatoFecha));
+        long millis = selectedDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        binding.calendarViewAgregar.setMaxDate(millis);
+        // Establece la fecha en el CalendarView
+        binding.calendarViewAgregar.setDate(millis, true, true);
 
         binding.etPorcentajeAgregar.setText(porcentaje + " %");
         binding.etIntentosAgregar.setText(intentos + " Intentos");
@@ -71,9 +80,17 @@ public class AgregarSesionFragment extends DialogFragment {
         binding.btnIntentosjeMas.setEnabled(false);
         binding.btnIntentosjeMenos.setEnabled(false);
 
-
         Bundle bundle = getArguments();
         Via via = bundle.getSerializable("via", Via.class);
+        binding.btnBackAgregarSesion.setOnClickListener(v -> {
+            Navigation.findNavController(requireView()).navigate(R.id.action_agregarSesionFragment2_to_viaFragment,bundle);
+        });
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(requireView()).navigate(R.id.action_agregarSesionFragment2_to_viaFragment,bundle);
+            }
+        });
         Log.d("salida", "VIAAAAAAAAAA:" + via.toString());
         imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -81,10 +98,10 @@ public class AgregarSesionFragment extends DialogFragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         vm.cargarImg(result);
-
                     }
                 }
         );
+
         binding.ratingBarAgregarSesion.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -103,19 +120,52 @@ public class AgregarSesionFragment extends DialogFragment {
             binding.rvImagenes.setAdapter(adapter);
         });
 
-        binding.btnAgregar.setOnClickListener(v -> {
-            vm.agregarFotoVia(vm.getmUrliList().getValue(), via.getId());
-            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-            String formattedDate = selectedDate.format(formatter);
-            vm.cargarSesion(new Sesion(via.getId(), porcentaje/100 , formattedDate, tipoAscenso, intentos));
-            vm.cargarResenia(new Resenia(via.getId(),binding.etComentario.getText().toString(),calificacion,formattedDate));
-            Navigation.findNavController(getParentFragment().getView()).navigate(R.id.viaFragment, bundle);
+        binding.btnAgregarSesion.setOnClickListener(v -> {
+
+            SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(R.color.AzulAero);
+            pDialog.setTitleText("Loading ...");
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    vm.agregarFotoVia(vm.getmUrliList().getValue(), via.getId());
+                    DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+                    String formattedDate = selectedDate.format(formatter);
+                    vm.cargarSesion(new Sesion(via.getId(), porcentaje/100, formattedDate, tipoAscenso, intentos));
+                    vm.cargarResenia(new Resenia(via.getId(), binding.etComentario.getText().toString(), calificacion, formattedDate));
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            vm.getmFlag().observe(getViewLifecycleOwner(), aBoolean -> {
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Reseña Existente")
+                                        .setContentText("Ya realizaste una reseña para esa vía")
+                                        .show();
+                            });
+                            vm.getmFlag2().observe(getViewLifecycleOwner(), flag -> {
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Agregado Correctamente")
+                                        .setContentText("Se agregó la sesión correctamente")
+                                        .show();
+                                pDialog.dismiss();
+                                Navigation.findNavController(getParentFragment().getView()).navigate(R.id.viaFragment, bundle);
+                            });
+
+                        }
+                    });
+                }
+            }).start();
         });
-        binding.btnDatePicker.setOnClickListener(v -> {
-            DateFragment dateFragment = new DateFragment();
-            dateFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyleDate);
-            dateFragment.show(getChildFragmentManager(), "dialogoFecha");
+        binding.calendarViewAgregar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                selectedDate = LocalDateTime.of(year, month + 1, dayOfMonth, 0, 0);
+            }
         });
+
         binding.btnPorcentajeMas.setOnClickListener(v -> {
             vm.plusProcentaje();
             vm.getmPorcentaje().observe(getViewLifecycleOwner(), porcentaje -> this.porcentaje = porcentaje);
@@ -145,24 +195,14 @@ public class AgregarSesionFragment extends DialogFragment {
         });
 
 
+
         toogleButtons();
+
+
 
         return binding.getRoot();
     }
 
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        // Set the gravity to the bottom of the screen
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.gravity = Gravity.BOTTOM;
-        window.setAttributes(params);
-        ;
-        return dialog;
-    }
 
     private void cargarImagen() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -171,11 +211,7 @@ public class AgregarSesionFragment extends DialogFragment {
         imagePickerLauncher.launch(intent);
     }
 
-    public void updateSelectedDate(LocalDateTime date) {
-        selectedDate = date;
-        Log.d("salida", selectedDate.format(formatoFecha));
-        binding.etFechaAgregar.setText(selectedDate.format(formatoFecha));
-    }
+
 
     private void toogleButtons() {
         binding.btnOnsight.setOnClickListener(v -> {
@@ -189,6 +225,8 @@ public class AgregarSesionFragment extends DialogFragment {
             binding.btnRepite.setBackgroundResource(R.drawable.button_pressed_border);
             binding.btnPorcentajeMas.setEnabled(false);
             binding.btnPorcentajeMenos.setEnabled(false);
+            binding.ratingBarAgregarSesion.setEnabled(true);
+            binding.etComentario.setEnabled(true);
             porcentaje = 100;
             binding.etPorcentajeAgregar.setText(porcentaje + " %");
             intentos=1;
@@ -209,6 +247,8 @@ public class AgregarSesionFragment extends DialogFragment {
             binding.btnRedpoint.setBackgroundResource(R.drawable.button_pressed_border);
             binding.btnRepite.setBackgroundResource(R.drawable.button_pressed_border);
             binding.btnPorcentajeMas.setEnabled(false);
+            binding.ratingBarAgregarSesion.setEnabled(true);
+            binding.etComentario.setEnabled(true);
             binding.btnPorcentajeMenos.setEnabled(false);
             porcentaje = 100;
             binding.etPorcentajeAgregar.setText(porcentaje + " %");
@@ -232,6 +272,8 @@ public class AgregarSesionFragment extends DialogFragment {
             binding.btnPorcentajeMas.setEnabled(false);
             binding.btnPorcentajeMenos.setEnabled(false);
             binding.btnIntentosjeMenos.setEnabled(true);
+            binding.ratingBarAgregarSesion.setEnabled(true);
+            binding.etComentario.setEnabled(true);
             binding.btnIntentosjeMas.setEnabled(true);
             porcentaje = 100;
             binding.etPorcentajeAgregar.setText(porcentaje + " %");
@@ -253,6 +295,8 @@ public class AgregarSesionFragment extends DialogFragment {
             binding.btnPorcentajeMenos.setEnabled(true);
             binding.btnIntentosjeMenos.setEnabled(true);
             binding.btnIntentosjeMas.setEnabled(true);
+            binding.ratingBarAgregarSesion.setEnabled(true);
+            binding.etComentario.setEnabled(true);
             porcentaje = 10;
             intentos=1;
             binding.etPorcentajeAgregar.setText(porcentaje + " %");
@@ -270,6 +314,8 @@ public class AgregarSesionFragment extends DialogFragment {
             binding.btnOnsight.setBackgroundResource(R.drawable.button_pressed_border);
             binding.btnRedpoint.setBackgroundResource(R.drawable.button_pressed_border);
             binding.btnProyect.setBackgroundResource(R.drawable.button_pressed_border);
+            binding.ratingBarAgregarSesion.setEnabled(false);
+            binding.etComentario.setEnabled(false);
             binding.btnPorcentajeMas.setEnabled(false);
             binding.btnPorcentajeMenos.setEnabled(false);
             binding.btnIntentosjeMenos.setEnabled(true);

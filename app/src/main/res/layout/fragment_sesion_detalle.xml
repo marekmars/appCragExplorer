@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/material_dynamic_neutral90"
+    tools:context=".ui.loogbook.sesionDetalle.SesionDetalleFragment"
+    >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_menu_home"
+
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <Button
+            android:id="@+id/btnBackSesion"
+            android:layout_width="113dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/anaheim_regular"
+            android:background="@drawable/button_pressed_menu_top"
+            android:drawableLeft="@drawable/baseline_arrow_back_24"
+            android:paddingStart="15dp" />
+
+        <TextView
+            android:id="@+id/tcTituloDetalleSesion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            android:fontFamily="@font/laca_regular"
+            android:gravity="center"
+            android:paddingRight="56dp"
+            android:text="Detalle Sesion"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSesionTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="71dp"
+        android:fontFamily="@font/anaheim_regular"
+        android:paddingTop="0dp"
+        app:cardBackgroundColor="@color/orange"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/anaheim_regular"
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingRight="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgLogoCardSesion"
+                    android:layout_width="49dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/tag_blanco" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/anaheim_regular"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvViaNombreSesion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="@font/anaheim_regular"
+                            android:gravity="left"
+                            android:text="TextView"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvTituloCardCiudadSesion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="TextView"
+                            android:textColor="@color/white"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/tvTituloCardProvSesion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="TextView"
+                            android:textColor="@color/white"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/tvTituloCardPaisSesion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="TextView"
+                            android:textColor="@color/white"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewSesion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="75dp"
+                android:paddingBottom="0dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout15"
+                app:layout_constraintVertical_bias="1.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ScrollView
+                        android:id="@+id/scrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorTransparent"
+                        android:fillViewport="true"
+                        android:scrollbars="none"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorTransparent"
+                            android:padding="0dp">
+
+
+                            <FrameLayout
+                                android:id="@+id/frameLayout8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.denzcoskun.imageslider.ImageSlider
+                                    android:id="@+id/imgSliderSesion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="280dp"
+                                    app:iss_delay="1000"
+                                    app:iss_period="1000">
+
+                                </com.denzcoskun.imageslider.ImageSlider>
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout11"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/frameLayout8">
+
+                                <TextView
+                                    android:id="@+id/tvLabelGradoSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Grado" />
+
+                                <TextView
+                                    android:id="@+id/tvGradoSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center"
+                                    android:text="TextView" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider9"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout12"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider9">
+
+                                <TextView
+                                    android:id="@+id/tvLabelMetrosSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Metros" />
+
+                                <TextView
+                                    android:id="@+id/tvMetrosSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center"
+                                    android:text="TextView" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider10"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout13"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider10">
+
+                                <TextView
+                                    android:id="@+id/tvLabelChapasSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Chapas" />
+
+                                <TextView
+                                    android:id="@+id/tvChapasSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center"
+                                    android:text="TextView" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider11"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearLayout13" />
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout14"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="15dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider11">
+
+                                <TextView
+                                    android:id="@+id/tvLabelEstiloSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center_vertical"
+                                    android:text="Estilo" />
+
+                                <ImageView
+                                    android:id="@+id/imgEstiloSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="40dp"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_weight="1" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider111"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout456"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="15dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider111">
+
+                                <TextView
+                                    android:id="@+id/tvLabelTipoSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center_vertical"
+                                    android:text="Tipo" />
+
+                                <ImageView
+                                    android:id="@+id/imgTipoSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="40dp"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_weight="1" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider2"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearLayout456" />
+
+
+                            <LinearLayout
+                                android:id="@+id/linearIntentosSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@drawable/button_pressed"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+                                <TextView
+                                    android:id="@+id/tvLabelIntentosSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Intentos" />
+
+                                <EditText
+                                    android:id="@+id/tvlIntentosSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:editable="false"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center"
+                                    android:text="TextView"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider4"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearIntentosSesion" />
+
+                            <LinearLayout
+                                android:id="@+id/linearPorcentajeSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@drawable/button_pressed"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider4">
+
+                                <TextView
+                                    android:id="@+id/tvLabelPorcentajeSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Porcentaje" />
+
+                                <EditText
+                                    android:id="@+id/tvlPorcentajeSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/colorTransparent"
+                                    android:editable="false"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center"
+                                    android:text="TextView"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider6"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearPorcentajeSesion" />
+
+                            <LinearLayout
+                                android:id="@+id/linearFechaSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@drawable/button_pressed"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider6">
+
+                                <TextView
+                                    android:id="@+id/tvLabelFechaSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Fecha" />
+
+                                <TextView
+                                    android:id="@+id/tvlFechajeSesion"
+                                    android:layout_width="80dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="center"
+                                    android:text="TextView" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider7"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearFechaSesion" />
+
+                            <LinearLayout
+                                android:id="@+id/linearCalificacionesSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@drawable/button_pressed"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider7">
+
+                                <TextView
+                                    android:id="@+id/tvLabelCalificacionSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Calificación" />
+
+                                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                    android:id="@+id/ratingBarSesion"
+                                    style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginRight="15dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:progressTint="@color/orange"
+                                    android:stepSize="0.1" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/divider12"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@android:color/system_neutral1_600"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearCalificacionesSesion" />
+
+                            <LinearLayout
+                                android:id="@+id/linearComentarioSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:background="@drawable/button_pressed"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/divider12">
+
+                                <TextView
+                                    android:id="@+id/tvLabelComentarioSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:text="Comentario" />
+
+                                <TextView
+                                    android:id="@+id/tvlComentariojeSesion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="0dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/anaheim_regular"
+                                    android:gravity="start"
+                                    android:inputType="textMultiLine"
+                                    android:paddingTop="15dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="20dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/linearComentarioSesion">
+
+                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                    android:id="@+id/btnEditarSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="50dp"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:padding="0dp"
+                                    android:src="@drawable/baseline_edit_note_24"
+                                    app:backgroundTint="@color/AzulAero"
+                                    app:elevation="1dp"
+                                    app:maxImageSize="30dp" />
+
+                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                    android:id="@+id/btnEliminarSesion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:src="@drawable/baseline_delete_sweep_30"
+                                    app:backgroundTint="@color/Siena"
+                                    app:elevation="1dp"
+                                    app:maxImageSize="30dp" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </ScrollView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

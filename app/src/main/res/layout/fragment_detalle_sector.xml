@@ -5,8 +5,9 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral90"
-    tools:context=".ui.home.explora.detalles.DetalleSectorFragment">
+
+    tools:context=".ui.home.explora.detalles.DetalleSectorFragment"
+    android:background="@color/material_dynamic_neutral90">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -48,7 +49,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="76dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="71dp"
         android:paddingTop="0dp"
         app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="20dp"

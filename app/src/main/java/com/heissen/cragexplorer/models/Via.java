@@ -132,10 +132,11 @@ public class Via implements Serializable {
     public String toString() {
         return "Via{" +
                 "id=" + id +
-                ", zona=" + zona +
+                ", zona=" + zona.toString() +
                 ", idZona=" + idZona +
                 ", idEstilo=" + idEstilo +
                 ", nombre='" + nombre + '\'' +
+                ", grado=" + grado.toString() +
                 ", idGrado=" + idGrado +
                 ", chapas=" + chapas +
                 ", altura=" + altura +
