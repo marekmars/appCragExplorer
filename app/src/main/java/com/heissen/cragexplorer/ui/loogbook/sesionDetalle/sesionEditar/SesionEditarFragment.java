@@ -57,7 +57,7 @@ public class SesionEditarFragment extends Fragment implements ImagenesAdapterBor
         vm = new ViewModelProvider(this).get(SesionEditarViewModel.class);
         binding = FragmentSesionEditarBinding.inflate(getLayoutInflater());
         formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+        getActivity().findViewById(R.id.nav_view_logbook).setVisibility(View.GONE);
         Bundle bundle = getArguments();
         Sesion sesion = bundle.getSerializable("sesion", Sesion.class);
         vm.getResenia(sesion.getIdVia());

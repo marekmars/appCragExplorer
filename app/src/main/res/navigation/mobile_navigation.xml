@@ -19,6 +19,19 @@
         android:id="@+id/perfilFragment"
         android:name="com.heissen.cragexplorer.ui.perfil.PerfilFragment"
         android:label="fragment_perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_viaInfoFragment"
+            app:destination="@id/viaInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viaInfoFragment"
+        android:name="com.heissen.cragexplorer.ui.perfil.viaInfo.ViaInfoFragment"
+        android:label="fragment_via_info"
+        tools:layout="@layout/fragment_via_info" >
+        <action
+            android:id="@+id/action_viaInfoFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+    </fragment>
 
 </navigation>

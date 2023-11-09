@@ -96,7 +96,7 @@
                     android:layout_marginRight="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_pressed"
-                    android:backgroundTint="@color/colorTransparent"
+                    android:backgroundTint="@color/float_transparent"
                     android:backgroundTintMode="add"
                     android:src="@drawable/baseline_favorite_border_24" />
             </LinearLayout>

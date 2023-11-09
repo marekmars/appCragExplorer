@@ -10,9 +10,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.heissen.cragexplorer.models.Favorito;
 import com.heissen.cragexplorer.models.Resenia;
 import com.heissen.cragexplorer.models.Usuario;
 import com.heissen.cragexplorer.request.ApiService;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +29,7 @@ public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> mCantSesiones;
     private MutableLiveData<Integer> mCantAscensos;
     private MutableLiveData<String> mTopGrado;
+    private MutableLiveData<List<Favorito>> mFavoritos;
     private String token;
     private ApiService.ApiInterface apiService;
 
@@ -37,13 +41,10 @@ public class PerfilViewModel extends AndroidViewModel {
         mCantSesiones = new MutableLiveData<>();
         mCantAscensos = new MutableLiveData<>();
         mTopGrado = new MutableLiveData<>();
+        mFavoritos= new MutableLiveData<>();
         apiService = ApiService.getApiInferface();
         token = ApiService.leerToken(application);
-        getUsuarioActivo();
-        getCantidadAsensos();
-        getCantidadProyectos();
-        getCantidadSesiones();
-        getTopGrado();
+
 
     }
 
@@ -61,6 +62,9 @@ public class PerfilViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getmCantAscensos() {
         return mCantAscensos;
+    }
+    public LiveData<List<Favorito>> getmFavoritos() {
+        return mFavoritos;
     }
 
     public LiveData<String> getmTopGrado() {
@@ -192,6 +196,27 @@ public class PerfilViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                Log.d("salida", t.getMessage());
+            }
+        });
+    }
+    public void getFavoritos() {
+
+        Call<List<Favorito>> llamada = apiService.obtenerFavoritos(token);
+        llamada.enqueue(new Callback<List<Favorito>>() {
+            @Override
+            public void onResponse(Call<List<Favorito>> call, Response<List<Favorito>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        mFavoritos.setValue(response.body());
+                        Log.d("salida", response.body().toString());
+                    }
+                } else {
+                    Log.d("salida", response.raw().message());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Favorito>> call, Throwable t) {
                 Log.d("salida", t.getMessage());
             }
         });

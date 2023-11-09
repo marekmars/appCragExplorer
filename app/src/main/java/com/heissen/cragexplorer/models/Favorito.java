@@ -1,16 +1,15 @@
 package com.heissen.cragexplorer.models;
 
-public class Favorito {
+import java.io.Serializable;
+
+public class Favorito implements Serializable {
 
     private int id;
 
     private Via via;
 
     private int idVia;
-
-
     private Usuario usuario;
-
 
     private int idUsuario;
 

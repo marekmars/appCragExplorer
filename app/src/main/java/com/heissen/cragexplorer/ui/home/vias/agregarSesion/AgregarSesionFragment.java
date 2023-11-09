@@ -63,6 +63,7 @@ public class AgregarSesionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentAgregarSesionBinding.inflate(getLayoutInflater());
+        getActivity().findViewById(R.id.nav_view_home).setVisibility(View.GONE);
         vm = new ViewModelProvider(this).get(AgregarSesionViewModel.class);
         porcentaje = 10;
         intentos = 1;

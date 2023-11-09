@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_home_explora_to_navigation_home_cercanos"
             app:destination="@id/navigation_home_cercanos" />
+        <action
+            android:id="@+id/action_navigation_home_explora_to_viaFragment"
+            app:destination="@id/viaFragment" />
     </fragment>
     <fragment
         android:id="@+id/detalleSectorFragment"

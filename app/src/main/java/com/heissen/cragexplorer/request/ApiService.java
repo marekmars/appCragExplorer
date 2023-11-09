@@ -68,6 +68,12 @@ public class ApiService {
         SharedPreferences sp = context.getSharedPreferences("token.xml", 0);
         return sp.getString("token", "");
     }
+    public static void borrarToken(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("token.xml", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove("token");
+        editor.apply();
+    }
 
     public interface ApiInterface {
         final String URL_USERS = "api/Usuarios/";
@@ -182,5 +188,7 @@ public class ApiService {
         Call<Favorito> agregarBorrarFavorito(@Header("Authorization") String token, @Path("idVia") int idVia);
         @GET(URL_FAVORITOS + "chequear/{idVia}")
         Call<Favorito> chequearFavorito(@Header("Authorization") String token, @Path("idVia") int idVia);
+        @GET(URL_FAVORITOS + "obtenerFavoritos")
+        Call<List<Favorito>> obtenerFavoritos(@Header("Authorization") String token);
     }
 }

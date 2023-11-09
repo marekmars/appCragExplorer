@@ -14,6 +14,6 @@
     <color name="Siena">#972121</color>
     <color name="main_green_color">#59649C</color>
     <color name="main_green_stroke_color">#59649C</color>
-
+    <color name="fondoImagen">#B3000000</color>
     <color name="colorTransparent">#00000000</color>
 </resources>

@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.heissen.cragexplorer.databinding.ActivityLoginBinding;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class LoginActivity extends AppCompatActivity {
     private LoginActivityViewModel vm;
     private ActivityLoginBinding binding;
@@ -66,6 +68,28 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnRecupero.setOnClickListener(v -> {
             intent = new Intent(this, RecuperoActivity.class);
             startActivity(intent);
+        });
+        binding.btnCerrar.setOnClickListener(v -> {
+
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Salir de la Aplicacion?")
+                    .setContentText("¿Estás seguro de que deseas salir de la aplicación?")
+                    .setConfirmText("No")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .setCancelButton("Si", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            finishAndRemoveTask();
+                            finishAffinity();
+                        }
+                    })
+                    .show();
         });
 
 
