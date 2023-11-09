@@ -163,7 +163,6 @@ public class SesionEditarFragment extends Fragment implements ImagenesAdapterBor
                                 Resenia reseniaEditada=new Resenia(resenia.getId(), sesion.getIdVia(),comentario,calificacion,selectedDate.toString());
                                 vm.editarSesion(sesionEditada);
                                 vm.editarResenia(reseniaEditada);
-
                                 Navigation.findNavController(getParentFragment().getView()).navigate(R.id.action_sesionEditarFragment_to_sesionDetalleFragment,bundle);
 
                             }

@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
     private GoogleSignInClient googleSignInClient;
-
     private Intent intent;
 
 
@@ -52,15 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             this.googleSignInClient = googleSignInClient;
         });
 
-        binding.btnVisibilityLogin.setOnClickListener(v -> {
-            vm.cambiarVisibilidadClave();
-        });
-        vm.getImagen().observe(this, drawable -> binding.btnVisibilityLogin.setImageDrawable(drawable));
-        vm.getmInputType().observe(this, inputType -> {
-            binding.etClaveLogin.setInputType(inputType);
-            binding.etClaveLogin.requestFocus();
-            binding.etClaveLogin.setSelection(binding.etClaveLogin.getText().length());
-        });
+
         vm.init();
         binding.btnLoginGoogle.setOnClickListener(v -> {
             googleSignIn();

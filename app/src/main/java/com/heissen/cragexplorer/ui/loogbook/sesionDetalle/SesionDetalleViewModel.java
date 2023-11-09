@@ -45,6 +45,7 @@ public class SesionDetalleViewModel extends AndroidViewModel {
     private MutableLiveData<Resenia> mResenia;
     private MutableLiveData<Drawable> mDrawable;
     private MutableLiveData<Drawable> mDrawableTipo;
+    private MutableLiveData<Sesion> mSesion;
 
     private String token;
 
@@ -53,8 +54,9 @@ public class SesionDetalleViewModel extends AndroidViewModel {
         mSlideModel = new MutableLiveData<>(new ArrayList<>());
         mResenia = new MutableLiveData<>();
         mDrawable = new MutableLiveData<>();
-    mDrawableTipo = new MutableLiveData<>();
+        mDrawableTipo = new MutableLiveData<>();
         token = ApiService.leerToken(getApplication());
+        mSesion = new MutableLiveData<>();
     }
 
     public LiveData<ArrayList<SlideModel>> getmSlideModel() {
@@ -65,12 +67,16 @@ public class SesionDetalleViewModel extends AndroidViewModel {
         return mDrawable;
     }
 
-   public LiveData<Drawable> getmDrawableTipo() {
+    public LiveData<Drawable> getmDrawableTipo() {
         return mDrawableTipo;
     }
 
     public LiveData<Resenia> getmResenias() {
         return mResenia;
+    }
+
+    public LiveData<Sesion> getmSesion() {
+        return mSesion;
     }
 
     public void getFotosViaUsuario(int idVia) {
@@ -155,6 +161,29 @@ public class SesionDetalleViewModel extends AndroidViewModel {
         });
     }
 
+    public void obtenerSesion(int idSesion) {
+        ApiService.ApiInterface apiService = ApiService.getApiInferface();
+        Call<Sesion> llamada = apiService.obtenerSesion(token, idSesion);
+        llamada.enqueue(new Callback<Sesion>() {
+            @Override
+            public void onResponse(Call<Sesion> call, Response<Sesion> response) {
+                if (response.isSuccessful()) {
+                    mSesion.setValue(response.body());
+                    Log.d("salida", "BORRO: " + response.body().toString());
+
+
+                } else {
+                    Log.d("salida", "ELSEBORRAR: " + response.raw().message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Sesion> call, Throwable t) {
+                Log.d("salida", "Borrar: " + t.getMessage());
+            }
+        });
+    }
+
     public void setDrawableEstilo(int idEstilo) {
         Log.d("salida", idEstilo + "");
         switch (idEstilo) {
@@ -169,6 +198,7 @@ public class SesionDetalleViewModel extends AndroidViewModel {
                 break;
         }
     }
+
     public void setDrawableTipo(int idTipo) {
         Log.d("salida", idTipo + "");
         switch (idTipo) {

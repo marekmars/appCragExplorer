@@ -35,9 +35,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/laca_regular"
                 android:text="TextView"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/cardViewSesionItem"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,17 +79,22 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/laca_regular"
                                 android:gravity="center"
                                 android:text="Grado"
-                                android:textSize="18dp" />
+                                android:textColor="@color/material_dynamic_neutral40"
+                                android:textSize="20dp" />
 
                             <TextView
                                 android:id="@+id/tvGradoSesionItem"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/anaheim_regular"
                                 android:gravity="center"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textColor="@color/material_dynamic_neutral40"
+                                android:textSize="16dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -102,17 +108,22 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/laca_regular"
                                 android:gravity="center"
                                 android:text="Metros"
-                                android:textSize="18dp" />
+                                android:textColor="@color/material_dynamic_neutral40"
+                                android:textSize="20dp" />
 
                             <TextView
                                 android:id="@+id/tvMetrosSesionItem"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/anaheim_regular"
                                 android:gravity="center"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textColor="@color/material_dynamic_neutral40"
+                                android:textSize="16dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -190,6 +201,7 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_marginBottom="0dp"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/laca_regular"
                                 android:gravity="center"
                                 android:text="TextView"
                                 android:textColor="@color/white"
@@ -203,6 +215,7 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_marginBottom="0dp"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/laca_regular"
                                 android:gravity="center"
                                 android:text="TextView"
                                 android:textColor="@color/white"
@@ -216,6 +229,7 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_marginBottom="0dp"
                                 android:layout_weight="1"
+                                android:fontFamily="@font/laca_regular"
                                 android:gravity="center"
                                 android:text="TextView"
                                 android:textColor="@color/white"
@@ -241,7 +255,10 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="TextView"
+                            android:textColor="@color/material_dynamic_neutral40"
+                            android:textSize="16dp" />
 
                         <me.zhanghai.android.materialratingbar.MaterialRatingBar
                             android:id="@+id/ratingBarSesionItem"

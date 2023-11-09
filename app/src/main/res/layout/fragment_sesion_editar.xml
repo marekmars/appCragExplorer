@@ -39,6 +39,7 @@
             android:gravity="center"
             android:paddingRight="56dp"
             android:text="Editar Sesion"
+            android:textColor="@color/material_dynamic_neutral40"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -125,6 +126,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:text="Tipo"
+                        android:textColor="@color/material_dynamic_neutral40"
                         android:textSize="20dp"
                         app:fontFamily="@font/laca_regular"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -160,8 +162,9 @@
                             android:scaleType="fitCenter"
                             android:text="Onsight"
                             android:textAllCaps="false"
+                            android:textColorHint="@color/material_dynamic_neutral40"
                             android:textSize="10sp"
-                            app:fontFamily="@font/laca_regular" />
+                            app:fontFamily="@font/anaheim_regular" />
 
                         <Button
                             android:id="@+id/btnRedpointEditar"
@@ -176,8 +179,9 @@
                             android:scaleType="fitCenter"
                             android:text="Redpoint"
                             android:textAllCaps="false"
+                            android:textColorHint="@color/material_dynamic_neutral40"
                             android:textSize="10sp"
-                            app:fontFamily="@font/laca_regular" />
+                            app:fontFamily="@font/anaheim_regular" />
 
                         <Button
                             android:id="@+id/btnFlashEditar"
@@ -192,8 +196,9 @@
                             android:scaleType="fitCenter"
                             android:text="Flash"
                             android:textAllCaps="false"
+                            android:textColorHint="@color/material_dynamic_neutral40"
                             android:textSize="10sp"
-                            app:fontFamily="@font/laca_regular" />
+                            app:fontFamily="@font/anaheim_regular" />
 
                         <Button
                             android:id="@+id/btnProyectEditar"
@@ -208,8 +213,9 @@
                             android:scaleType="fitCenter"
                             android:text="Proyecto"
                             android:textAllCaps="false"
+                            android:textColorHint="@color/material_dynamic_neutral40"
                             android:textSize="10sp"
-                            app:fontFamily="@font/laca_regular" />
+                            app:fontFamily="@font/anaheim_regular" />
 
                         <Button
                             android:id="@+id/btnRepiteEditar"
@@ -224,8 +230,9 @@
                             android:scaleType="fitCenter"
                             android:text="Repeticion"
                             android:textAllCaps="false"
+                            android:textColorHint="@color/material_dynamic_neutral40"
                             android:textSize="10sp"
-                            app:fontFamily="@font/laca_regular" />
+                            app:fontFamily="@font/anaheim_regular" />
 
                     </LinearLayout>
 
@@ -234,10 +241,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:text="Calificación"
+                        android:textColor="@color/material_dynamic_neutral40"
                         android:textSize="20dp"
                         app:fontFamily="@font/laca_regular"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -276,10 +284,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:text="Cantidad de Intentos"
+                        android:textColor="@color/material_dynamic_neutral40"
                         android:textSize="20dp"
                         app:fontFamily="@font/laca_regular"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -326,6 +335,7 @@
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:textColor="@color/material_dynamic_neutral20"
+                                android:textColorHint="@color/material_dynamic_neutral40"
                                 android:textSize="16dp"
                                 app:fontFamily="@font/laca_regular"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -370,16 +380,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:text="Porcentaje Completado"
+                        android:textColor="@color/material_dynamic_neutral40"
                         android:textSize="20dp"
                         app:fontFamily="@font/laca_regular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.014"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textLayoutIntentosEditar" />
+
+                    <TextView
+                        android:id="@+id/textView11Editar3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:text="Comentario"
+                        android:textColor="@color/material_dynamic_neutral40"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/laca_regular"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.014"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textLayoutPorcentajeEditar" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textLayoutPorcentajeEditar"
@@ -419,6 +447,7 @@
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:textColor="@color/material_dynamic_neutral20"
+                                android:textColorHint="@color/material_dynamic_neutral40"
                                 android:textSize="16dp"
                                 app:fontFamily="@font/laca_regular"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -457,31 +486,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="105dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="20dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:background="@drawable/rounded_background"
                         android:ems="10"
                         android:enabled="true"
                         android:gravity="start"
-                        android:hint="Comentario"
                         android:inputType="textMultiLine"
                         android:maxLength="300"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
+                        android:textColor="@color/material_dynamic_neutral40"
                         android:textSize="16dp"
                         app:fontFamily="@font/laca_regular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.36"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textLayoutPorcentajeEditar" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView11Editar3" />
 
                     <LinearLayout
                         android:id="@+id/linearLayout5Editar"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:orientation="horizontal"

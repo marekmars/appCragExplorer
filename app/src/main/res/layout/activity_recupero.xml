@@ -32,26 +32,38 @@
                 android:gravity="center"
 
                 android:text="Recuperar Clave"
-                android:textColor="@color/black"
+                android:textColor="@color/material_dynamic_neutral40"
+                android:textColorHint="@color/material_dynamic_neutral40"
                 android:textFontWeight="@integer/material_motion_duration_long_1"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:fontFamily="@font/laca_medium" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/material_dynamic_neutral40"
+                app:expandedHintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:hintTextColor="@color/material_dynamic_neutral40">
 
-
-            <EditText
-                android:id="@+id/etCorreoRecupero"
-                android:layout_width="293dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/rounded_background"
-                android:ems="10"
-                android:hint="Correo"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="10dp"
-                app:fontFamily="@font/laca_regular" />
+                <EditText
+                    android:id="@+id/etCorreoRecupero"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_background"
+                    android:ems="10"
+                    android:hint="Correo"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/material_dynamic_neutral40"
+                    android:textColorHint="@color/material_dynamic_neutral40"
+                    app:fontFamily="@font/laca_regular" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button

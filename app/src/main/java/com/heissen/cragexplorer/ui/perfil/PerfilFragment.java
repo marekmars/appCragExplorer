@@ -1,6 +1,7 @@
 package com.heissen.cragexplorer.ui.perfil;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +18,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
 import com.heissen.cragexplorer.LoginActivity;
 import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.databinding.FragmentPerfilBinding;
+import com.heissen.cragexplorer.models.Usuario;
 import com.heissen.cragexplorer.request.ApiService;
 import com.heissen.cragexplorer.ui.loogbook.ascensos.SesionesAdapter;
 
@@ -29,6 +32,9 @@ public class PerfilFragment extends Fragment {
 
     private FragmentPerfilBinding binding;
     private PerfilViewModel vm;
+
+    private Usuario usuario;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,9 +56,11 @@ public class PerfilFragment extends Fragment {
 
 
         vm.getmUsuario().observe(getViewLifecycleOwner(),usuario -> {
+            this.usuario=usuario;
             binding.tvNombrePerfil.setText(usuario.toString());
             Glide.with(getContext())
                     .load(ApiService.URL_BASE + usuario.getAvatar())
+                    .signature(new ObjectKey(String.valueOf(System.currentTimeMillis())))
                     .placeholder(R.drawable.avatar_default)
                     .into(binding.imgAvatarPerfil);
         });
@@ -95,6 +103,11 @@ public class PerfilFragment extends Fragment {
                         }
                     })
                     .show();
+        });
+        binding.btnEditarPerfil.setOnClickListener(v -> {
+            Bundle bundle=new Bundle();
+            bundle.putSerializable("usuario",usuario);
+            Navigation.findNavController(v).navigate(R.id.action_perfilFragment_to_editarPerfilFragment,bundle);
         });
 
         return root;

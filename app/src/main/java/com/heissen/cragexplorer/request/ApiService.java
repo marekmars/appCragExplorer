@@ -102,6 +102,8 @@ public class ApiService {
         @FormUrlEncoded
         @POST(URL_USERS+"recupero")
         Call<String> inciarRecupero(@Field("correo") String correo);
+        @PUT(URL_USERS + "editar")
+        Call<ResponseBody> editarUsuario(@Header("Authorization")String token, @Body Usuario usuario);
 
 
 
@@ -163,6 +165,8 @@ public class ApiService {
         Call<Integer> cantidadSesiones(@Header("Authorization")String token);
         @GET(URL_SESIONES + "topGrado")
         Call<String> topGrado(@Header("Authorization")String token);
+        @GET(URL_SESIONES + "obtenerSesion/{idSesion}")
+        Call<Sesion> obtenerSesion(@Header("Authorization")String token, @Path("idSesion") int idSesion);
 
         @DELETE(URL_SESIONES + "eliminar/{id}")
         Call<Boolean> eliminarSesion(@Header("Authorization") String token, @Path("id") int id);

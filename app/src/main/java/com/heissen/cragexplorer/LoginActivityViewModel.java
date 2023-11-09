@@ -50,11 +50,9 @@ import retrofit2.Response;
 
 public class LoginActivityViewModel extends AndroidViewModel {
 
-    private MutableLiveData<String> mError;
+
     private MutableLiveData<String> mCorreo;
-    private MutableLiveData<Boolean> mFlag;
-    private MutableLiveData<Drawable> mImagen;
-    private MutableLiveData<Integer> mInputType;
+
 
     HashMap<String, Object> map;
     private FirebaseAuth auth;
@@ -66,11 +64,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
 
     public LoginActivityViewModel(@NonNull Application application) {
         super(application);
-        mError = new MutableLiveData<>();
         mCorreo = new MutableLiveData<>();
-        mFlag = new MutableLiveData<>(false);
-        mImagen = new MutableLiveData<>(application.getResources().getDrawable(R.drawable.ic_visibility_off));
-        mInputType = new MutableLiveData<Integer>();
         mUsuario = new MutableLiveData<>();
         mUserData = new MutableLiveData<>();
         mGoogleSignInClient = new MutableLiveData<>();
@@ -81,34 +75,12 @@ public class LoginActivityViewModel extends AndroidViewModel {
         return mGoogleSignInClient;
     }
 
-    public LiveData<HashMap<String, Object>> getmUserData() {
-        return mUserData;
-    }
-
-    public MutableLiveData<Usuario> getmUsuario() {
-        return mUsuario;
-    }
-
-    public LiveData<String> getmError() {
-        return mError;
-    }
-
-    public LiveData<Drawable> getImagen() {
-        return mImagen;
-    }
-
 
     public LiveData<String> getmCorreo() {
         return mCorreo;
     }
 
-    public LiveData<Boolean> getFlag() {
-        return mFlag;
-    }
 
-    public MutableLiveData<Integer> getmInputType() {
-        return mInputType;
-    }
 
 
     public void login(String correo, String clave) {
@@ -146,17 +118,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
     }
 
 
-    public void cambiarVisibilidadClave() {
-        Log.d("salida", mFlag.getValue().toString());
-        if (mFlag.getValue()) {
-            mImagen.setValue(getApplication().getResources().getDrawable(R.drawable.ic_visibility_off));
-            mInputType.setValue(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        } else {
-            mImagen.setValue(getApplication().getResources().getDrawable(R.drawable.ic_visibility));
-            mInputType.setValue(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
-        mFlag.setValue(!mFlag.getValue());
-    }
+
 
 
     /////////////////////////////////////

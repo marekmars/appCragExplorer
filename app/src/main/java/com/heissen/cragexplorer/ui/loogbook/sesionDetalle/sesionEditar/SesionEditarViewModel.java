@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import com.heissen.cragexplorer.models.Foto;
 import com.heissen.cragexplorer.models.Resenia;
 import com.heissen.cragexplorer.models.Sesion;
@@ -32,10 +33,11 @@ public class SesionEditarViewModel extends AndroidViewModel {
 
     private ApiService.ApiInterface apiService;
     private MutableLiveData<Integer> mIntentos;
-    private MutableLiveData<Boolean>mFlag;
-    private MutableLiveData<Boolean>mFlag2;
+    private MutableLiveData<Boolean> mFlag;
+    private MutableLiveData<Boolean> mFlag2;
 
     private MutableLiveData<Integer> mPorcentaje;
+    private MutableLiveData<Sesion> mSesion;
 
     private MutableLiveData<LocalDateTime> mFecha;
 
@@ -47,10 +49,11 @@ public class SesionEditarViewModel extends AndroidViewModel {
         mPorcentaje = new MutableLiveData<>(10);
         mIntentos = new MutableLiveData<>(1);
         token = ApiService.leerToken(application);
-        mListaFotos=new MutableLiveData<>();
-    mFecha=new MutableLiveData<>();
-        mFlag=new MutableLiveData<>();
-        mFlag2=new MutableLiveData<>();
+        mListaFotos = new MutableLiveData<>();
+        mFecha = new MutableLiveData<>();
+        mFlag = new MutableLiveData<>();
+        mFlag2 = new MutableLiveData<>();
+        mSesion=new MutableLiveData<>();
     }
 
 
@@ -61,6 +64,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
     public LiveData<ArrayList<Foto>> getmListaFotos() {
         return mListaFotos;
     }
+
     public LiveData<Integer> getmPorcentaje() {
         return mPorcentaje;
     }
@@ -68,11 +72,17 @@ public class SesionEditarViewModel extends AndroidViewModel {
     public LiveData<Integer> getmIntentos() {
         return mIntentos;
     }
+
     public LiveData<Boolean> getmFlag() {
         return mFlag;
     }
+
     public LiveData<Boolean> getmFlag2() {
         return mFlag2;
+    }
+
+    public LiveData<Sesion> getmSesion() {
+        return mSesion;
     }
 
     public LiveData<LocalDateTime> getmFecha() {
@@ -86,6 +96,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
     public void setmPorcentaje(int porcentaje) {
         this.mPorcentaje.setValue(porcentaje);
     }
+
     public void getResenia(int idVia) {
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
         Call<Resenia> llamada = apiService.getReseniaViaUsuario(token, idVia);
@@ -109,6 +120,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
             }
         });
     }
+
     public void getFotosViaUsuario(int idVia) {
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
         Call<List<Foto>> llamada = apiService.getFotosUsuario(token, idVia);
@@ -119,7 +131,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
                 List<Foto> fotos = new ArrayList<>();
                 if (response.isSuccessful()) {
                     if (response.body() != null && !response.body().isEmpty()) {
-                       mListaFotos.setValue(new ArrayList<>(response.body()));
+                        mListaFotos.setValue(new ArrayList<>(response.body()));
                     } else {
                         Log.d("salida", "ELSE: " + response.raw().toString());
 
@@ -137,6 +149,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
             }
         });
     }
+
     public void plusProcentaje() {
         if (mPorcentaje.getValue() < 100) {
             int porcentaje = mPorcentaje.getValue();
@@ -153,8 +166,9 @@ public class SesionEditarViewModel extends AndroidViewModel {
             mPorcentaje.setValue(porcentaje);
         }
     }
+
     public void plusIntentos(int tipoIntento) {
-        if (mIntentos.getValue() < 99 &&tipoIntento>=3) {
+        if (mIntentos.getValue() < 99 && tipoIntento >= 3) {
             int intentos = mIntentos.getValue();
             intentos += 1;
             mIntentos.setValue(intentos);
@@ -163,14 +177,14 @@ public class SesionEditarViewModel extends AndroidViewModel {
 
 
     public void minusIntentos(int tipoIntento) {
-        if (mIntentos.getValue() > 1 &&tipoIntento>=4) {
+        if (mIntentos.getValue() > 1 && tipoIntento >= 4) {
             int intentos = mIntentos.getValue();
             intentos -= 1;
             mIntentos.setValue(intentos);
-            Log.d("salida",mIntentos.getValue()+"");
+            Log.d("salida", mIntentos.getValue() + "");
         }
-        if (mIntentos.getValue() > 2 && tipoIntento==3) {
-            Log.d("salida",mIntentos.getValue()+"");
+        if (mIntentos.getValue() > 2 && tipoIntento == 3) {
+            Log.d("salida", mIntentos.getValue() + "");
             int intentos = mIntentos.getValue();
             intentos -= 1;
             mIntentos.setValue(intentos);
@@ -200,7 +214,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
         }
 
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
-Log.d("salida","sesion editada: "+sesion.toString());
+        Log.d("salida", "sesion editada: " + sesion.toString());
 
         Call<Sesion> llamada = apiService.editarSesion(token, sesion);
 
@@ -208,8 +222,8 @@ Log.d("salida","sesion editada: "+sesion.toString());
             @Override
             public void onResponse(Call<Sesion> call, Response<Sesion> response) {
                 if (response.isSuccessful()) {
-
-                    Log.d("salida", "respuesta: "+ response.body().toString());
+                    mSesion.setValue(response.body());
+                    Log.d("salida", "respuesta: " + response.body().toString());
                 } else {
                     Log.d("salida", "ELSE Sesion: " + response.raw());
 
@@ -224,12 +238,12 @@ Log.d("salida","sesion editada: "+sesion.toString());
     }
 
     public void editarResenia(Resenia resenia) {
-        if (resenia.getIdVia() <= 0||resenia.getCalificacion() <= 0 || resenia.getCalificacion() > 5||
+        if (resenia.getIdVia() <= 0 || resenia.getCalificacion() <= 0 || resenia.getCalificacion() > 5 ||
                 resenia.getFecha() == null) {
-            Log.d("salida","No se creo la reseña");
+            Log.d("salida", "No se creo la reseña");
             return;
         }
-        Log.d("salida","resenia editada: "+resenia.toString());
+        Log.d("salida", "resenia editada: " + resenia.toString());
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
 
         Call<Resenia> llamada = apiService.editarResenia(token, resenia);
@@ -238,7 +252,8 @@ Log.d("salida","sesion editada: "+sesion.toString());
             @Override
             public void onResponse(Call<Resenia> call, Response<Resenia> response) {
                 if (response.isSuccessful()) {
-                    Log.d("salida", "respuesta: "+ response.body().toString());
+
+                    Log.d("salida", "respuesta: " + response.body().toString());
                 } else {
                     Log.d("salida", "ELSE Resenia: " + response.raw());
 
@@ -252,7 +267,6 @@ Log.d("salida","sesion editada: "+sesion.toString());
             }
         });
     }
-
 
 
 }

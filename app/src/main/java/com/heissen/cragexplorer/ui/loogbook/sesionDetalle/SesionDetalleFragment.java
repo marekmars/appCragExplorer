@@ -37,7 +37,7 @@ public class SesionDetalleFragment extends Fragment {
 
     private SesionDetalleViewModel vm;
     private FragmentSesionDetalleBinding binding;
-
+private Sesion sesion;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -46,11 +46,22 @@ public class SesionDetalleFragment extends Fragment {
         binding = FragmentSesionDetalleBinding.inflate(getLayoutInflater());
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Bundle bundle = getArguments();
-        Sesion sesion = bundle.getSerializable("sesion", Sesion.class);
-        vm.getResenia(sesion.getIdVia());
-        vm.getFotosViaUsuario(sesion.getIdVia());
-        vm.setDrawableEstilo(sesion.getVia().getIdEstilo());
-        vm.setDrawableTipo(sesion.getIdTipo());
+        vm.obtenerSesion(bundle.getSerializable("sesion", Sesion.class).getId());
+        vm.getmSesion().observe(getViewLifecycleOwner(),sesion -> {
+            this.sesion=sesion;
+            vm.getResenia(sesion.getIdVia());
+            vm.getFotosViaUsuario(sesion.getIdVia());
+            vm.setDrawableEstilo(sesion.getVia().getIdEstilo());
+            vm.setDrawableTipo(sesion.getIdTipo());
+            binding.tvViaNombreSesion.setText(sesion.getVia().getNombre());
+            binding.tvGradoSesion.setText(sesion.getVia().getGrado().gradoN);
+            binding.tvMetrosSesion.setText(sesion.getVia().getAltura() + "");
+            binding.tvChapasSesion.setText(sesion.getVia().getChapas() + "");
+            binding.tvlIntentosSesion.setText(sesion.getIntentos() + "");
+            binding.tvlPorcentajeSesion.setText(sesion.getPorcentaje() * 100 + " %");
+            binding.tvlFechajeSesion.setText(LocalDateTime.parse(sesion.getFecha()).format(formatoFecha));
+        });
+
 
         String ciudad = bundle.getString("ciudad");
         String provincia = bundle.getString("provincia");
@@ -90,7 +101,6 @@ public class SesionDetalleFragment extends Fragment {
                         public void onClick(SweetAlertDialog sDialog) {
                             sDialog.dismissWithAnimation();
                             vm.borrarSesion(sesion.getId());
-
                             Navigation.findNavController(getView()).navigate(R.id.action_sesionDetalleFragment_to_ascensoFragment);
 
                         }
@@ -101,7 +111,7 @@ public class SesionDetalleFragment extends Fragment {
         binding.btnEditarSesion.setOnClickListener(v -> {
             Navigation.findNavController(getView()).navigate(R.id.action_sesionDetalleFragment_to_sesionEditarFragment, bundle);
         });
-        binding.tvViaNombreSesion.setText(sesion.getVia().getNombre());
+
         binding.tvTituloCardCiudadSesion.setText(ciudad);
         binding.tvTituloCardProvSesion.setText(provincia);
         binding.tvTituloCardPaisSesion.setText(pais);
@@ -111,15 +121,14 @@ public class SesionDetalleFragment extends Fragment {
             binding.tvlComentariojeSesion.setText(resenia.getComentario());
         });
 
-        binding.tvGradoSesion.setText(sesion.getVia().getGrado().gradoN);
-        binding.tvMetrosSesion.setText(sesion.getVia().getAltura() + "");
-        binding.tvChapasSesion.setText(sesion.getVia().getChapas() + "");
-        binding.tvlIntentosSesion.setText(sesion.getIntentos() + "");
-        binding.tvlPorcentajeSesion.setText(sesion.getPorcentaje() * 100 + " %");
-        binding.tvlFechajeSesion.setText(LocalDateTime.parse(sesion.getFecha()).format(formatoFecha));
+
 
         return binding.getRoot();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+    }
 }

@@ -38,6 +38,7 @@
             android:gravity="center"
             android:paddingRight="56dp"
             android:text="Detalle Sector"
+            android:textColor="@color/material_dynamic_neutral40"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -72,6 +73,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/laca_regular"
                 android:text="TextView"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -121,6 +123,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
                             android:text="TextView"
                             android:textSize="16dp" />
 
@@ -132,6 +135,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
                             android:text="TextView"
                             android:textSize="16dp" />
 
@@ -143,6 +147,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
                             android:text="TextView"
                             android:textSize="16dp" />
 
@@ -177,7 +182,10 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="1"
-                            android:text="Calificación" />
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="Calificación"
+                            android:textColor="@color/material_dynamic_neutral40"
+                            android:textSize="16dp" />
 
                         <me.zhanghai.android.materialratingbar.MaterialRatingBar
                             android:id="@+id/ratingBarSector"
@@ -214,7 +222,10 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="1"
-                            android:text="Latitud" />
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="Latitud"
+                            android:textColor="@color/material_dynamic_neutral40"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/tvLatitudSector"
@@ -222,8 +233,11 @@
                             android:layout_height="match_parent"
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
                             android:gravity="center"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textColor="@color/material_dynamic_neutral40"
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
@@ -250,7 +264,10 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="1"
-                            android:text="Longitud" />
+                            android:fontFamily="@font/anaheim_regular"
+                            android:text="Longitud"
+                            android:textColor="@color/material_dynamic_neutral40"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/tvLongitudSector"
@@ -258,8 +275,11 @@
                             android:layout_height="match_parent"
                             android:layout_marginRight="15dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/anaheim_regular"
                             android:gravity="center"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textColor="@color/material_dynamic_neutral40"
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
@@ -287,8 +307,10 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="0dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/laca_regular"
                             android:gravity="center"
                             android:text="Zonas"
+                            android:textColor="@color/material_dynamic_neutral40"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 

@@ -42,6 +42,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:background="@color/white" />
 
             </androidx.cardview.widget.CardView>
@@ -54,9 +55,11 @@
             android:layout_height="51dp"
             android:layout_marginLeft="18dp"
             android:layout_weight="1"
+            android:fontFamily="@font/laca_regular"
             android:gravity="center_vertical"
             android:text="TextView"
-            android:textSize="18dp" />
+            android:textColor="@color/material_dynamic_neutral40"
+            android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -88,8 +91,11 @@
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+            android:fontFamily="@font/anaheim_regular"
             android:gravity="center_vertical"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/material_dynamic_neutral40"
+            android:textSize="16dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -108,7 +114,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/anaheim_regular"
             android:inputType="textMultiLine"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/material_dynamic_neutral40"
+            android:textSize="16dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

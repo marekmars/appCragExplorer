@@ -68,31 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        binding.btnVisibility.setOnClickListener(v -> {
-            vm.cambiarVisibilidadClave();
-        });
-        binding.btnVisibilityNuevamente.setOnClickListener(v -> {
-            vm.cambiarVisibilidadClave2();
-        });
-        vm.getmInputType().observe(this, inputType -> {
-            binding.etClaveRegister.setInputType(inputType);
-            binding.etClaveRegister.requestFocus();
-            binding.etClaveRegister.setSelection(binding.etClaveRegister.getText().length());
-        });
 
-        vm.getmInputType2().observe(this, inputType -> {
-            binding.etClaveNuevamenteRegister.setInputType(inputType);
-            binding.etClaveNuevamenteRegister.requestFocus();
-            binding.etClaveNuevamenteRegister.setSelection(binding.etClaveNuevamenteRegister.getText().length());
-        });
-
-
-        vm.getImagen().observe(this, image -> {
-            binding.btnVisibility.setImageDrawable(image);
-        });
-        vm.getmImagen2().observe(this, image2 -> {
-            binding.btnVisibilityNuevamente.setImageDrawable(image2);
-        });
 
         setContentView(binding.getRoot());
     }

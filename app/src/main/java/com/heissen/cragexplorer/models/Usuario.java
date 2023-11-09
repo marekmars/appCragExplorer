@@ -1,6 +1,8 @@
 package com.heissen.cragexplorer.models;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private int id ;
     private String nombre ;
     private String apellido ;
@@ -21,6 +23,14 @@ public class Usuario {
         this.clave = clave;
         this.avatar = avatar;
         this.google = google;
+    }
+
+    public Usuario(String nombre, String apellido, String correo, String clave) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.clave = clave;
+
     }
 
     public int getId() {

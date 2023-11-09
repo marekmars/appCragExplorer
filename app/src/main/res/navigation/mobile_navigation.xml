@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_perfilFragment_to_viaInfoFragment"
             app:destination="@id/viaInfoFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_editarPerfilFragment"
+            app:destination="@id/editarPerfilFragment" />
     </fragment>
     <fragment
         android:id="@+id/viaInfoFragment"
@@ -31,6 +34,15 @@
         tools:layout="@layout/fragment_via_info" >
         <action
             android:id="@+id/action_viaInfoFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarPerfilFragment"
+        android:name="com.heissen.cragexplorer.ui.perfil.editarPerfil.EditarPerfilFragment"
+        android:label="fragment_editar_perfil"
+        tools:layout="@layout/fragment_editar_perfil" >
+        <action
+            android:id="@+id/action_editarPerfilFragment_to_perfilFragment"
             app:destination="@id/perfilFragment" />
     </fragment>
 

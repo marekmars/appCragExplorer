@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.databinding.FragmentViaBinding;
-import com.heissen.cragexplorer.databinding.FragmentViaInfoBinding;
 import com.heissen.cragexplorer.models.Via;
 import com.heissen.cragexplorer.ui.home.vias.resenias.ReseniasFragment;
 
