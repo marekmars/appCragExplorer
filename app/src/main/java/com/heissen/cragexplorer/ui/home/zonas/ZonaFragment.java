@@ -56,7 +56,10 @@ public class ZonaFragment extends Fragment {
         Bundle bundle = getArguments();
         zona = bundle.getSerializable("zona", Zona.class);
         binding.tvZonaNombre.setText(zona.getNombre());
+
         getActivity().findViewById(R.id.nav_view_home).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
+
         binding.tvTituloCardSector.setText(zona.getSector().getNombre());
         binding.btnBackZona.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigate(R.id.action_zonaFragment_to_detalleSectorFragment, bundle);

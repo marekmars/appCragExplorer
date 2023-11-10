@@ -43,7 +43,7 @@ public class ViaFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         Bundle bundle = getArguments();
         Bundle bundleBack = new Bundle();
-
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
         vm = new ViewModelProvider(this).get(ViaViewModel.class);
         binding = FragmentViaBinding.inflate(getLayoutInflater());
         via = bundle.getSerializable("via", Via.class);

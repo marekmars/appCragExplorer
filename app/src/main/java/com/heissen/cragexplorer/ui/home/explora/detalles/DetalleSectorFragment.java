@@ -53,7 +53,7 @@ public class DetalleSectorFragment extends Fragment {
         int idFragmentAnterior=bundle.getInt("fragmentAnterior");
         vm.getSector(bundle);
    /*     vm.getFotosSector(bundle);*/
-/*        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);*/
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
         getActivity().findViewById(R.id.nav_view_home).setVisibility(View.GONE);
 
         vm.getmSector().observe(getViewLifecycleOwner(), sector -> {

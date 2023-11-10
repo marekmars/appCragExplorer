@@ -59,7 +59,7 @@ public class EditarPerfilFragment extends Fragment {
             binding.etClaveNuevamenteEditarPerfil.setEnabled(flag);
 
         });
-
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
         imgUri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.drawable.avatar_default);
         binding.btnBackEditarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override

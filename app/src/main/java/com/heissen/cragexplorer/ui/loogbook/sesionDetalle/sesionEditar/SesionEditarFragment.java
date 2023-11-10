@@ -1,6 +1,7 @@
 package com.heissen.cragexplorer.ui.loogbook.sesionDetalle.sesionEditar;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -64,8 +65,14 @@ public class SesionEditarFragment extends Fragment implements ImagenesAdapterBor
         tipoAscenso = sesion.getIdTipo();
         selectedDate = LocalDateTime.parse(sesion.getFecha());
         long millis = selectedDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        long millisHoy=LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        long millisHoy = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
         binding.calendarViewEditar.setMaxDate(millisHoy);
+        vm.setTipo(sesion.getIdTipo());
+        vm.getmBtnFlafh().observe(getViewLifecycleOwner(), color -> binding.btnFlashEditar.setBackground(ContextCompat.getDrawable(getContext(),color)));
+        vm.getmBtnOnsight().observe(getViewLifecycleOwner(), color -> binding.btnOnsightEditar.setBackground(ContextCompat.getDrawable(getContext(),color)));
+        vm.getmBtnORepeticion().observe(getViewLifecycleOwner(), color -> binding.btnRepiteEditar.setBackground(ContextCompat.getDrawable(getContext(),color)));
+        vm.getmBtnRedPoint().observe(getViewLifecycleOwner(), color -> binding.btnRedpointEditar.setBackground(ContextCompat.getDrawable(getContext(),color)));
+        vm.getmBtnProyecto().observe(getViewLifecycleOwner(), color -> binding.btnProyectEditar.setBackground(ContextCompat.getDrawable(getContext(),color)));
 
         // Establece la fecha en el CalendarView
         binding.calendarViewEditar.setDate(millis, true, true);
@@ -73,7 +80,7 @@ public class SesionEditarFragment extends Fragment implements ImagenesAdapterBor
         vm.getmResenia().observe(getViewLifecycleOwner(), resenia -> {
             calificacion = resenia.getCalificacion();
             comentario = resenia.getComentario();
-            this.resenia=resenia;
+            this.resenia = resenia;
             binding.ratingBarEditar.setRating(calificacion.floatValue());
             binding.etComentarioEditar.setText(comentario);
         });
@@ -144,31 +151,30 @@ public class SesionEditarFragment extends Fragment implements ImagenesAdapterBor
 
         binding.btnGuardarEdicion.setOnClickListener(v -> {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Estas seguro de modificar esta sesion?")
-                        .setContentText("No vas a poder recuperar la sesion anterior!")
-                        .setConfirmText("Cancelar")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-                            }
-                        })
-                        .setCancelButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-                                comentario=binding.etComentarioEditar.getText().toString();
-                                Sesion sesionEditada=new Sesion(sesion.getId(), sesion.getIdVia(),porcentaje/100,selectedDate.toString(),tipoAscenso,intentos);
-                                Resenia reseniaEditada=new Resenia(resenia.getId(), sesion.getIdVia(),comentario,calificacion,selectedDate.toString());
-                                vm.editarSesion(sesionEditada);
-                                vm.editarResenia(reseniaEditada);
-                                Navigation.findNavController(getParentFragment().getView()).navigate(R.id.action_sesionEditarFragment_to_sesionDetalleFragment,bundle);
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Estas seguro de modificar esta sesion?")
+                    .setContentText("No vas a poder recuperar la sesion anterior!")
+                    .setConfirmText("Cancelar")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .setCancelButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            comentario = binding.etComentarioEditar.getText().toString();
+                            Sesion sesionEditada = new Sesion(sesion.getId(), sesion.getIdVia(), porcentaje / 100, selectedDate.toString(), tipoAscenso, intentos);
+                            Resenia reseniaEditada = new Resenia(resenia.getId(), sesion.getIdVia(), comentario, calificacion, selectedDate.toString());
+                            vm.editarSesion(sesionEditada);
+                            vm.editarResenia(reseniaEditada);
+                            Navigation.findNavController(getParentFragment().getView()).navigate(R.id.action_sesionEditarFragment_to_sesionDetalleFragment, bundle);
 
-                            }
-                        })
-                        .show();
-
+                        }
+                    })
+                    .show();
 
 
         });

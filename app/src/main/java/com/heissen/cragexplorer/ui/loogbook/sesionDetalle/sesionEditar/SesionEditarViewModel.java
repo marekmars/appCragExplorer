@@ -2,6 +2,7 @@ package com.heissen.cragexplorer.ui.loogbook.sesionDetalle.sesionEditar;
 
 import android.app.Application;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.heissen.cragexplorer.R;
 import com.heissen.cragexplorer.models.Foto;
 import com.heissen.cragexplorer.models.Resenia;
 import com.heissen.cragexplorer.models.Sesion;
@@ -35,6 +37,11 @@ public class SesionEditarViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> mIntentos;
     private MutableLiveData<Boolean> mFlag;
     private MutableLiveData<Boolean> mFlag2;
+    private MutableLiveData<Integer> mBtnOnsight;
+    private MutableLiveData<Integer> mBtnFlash;
+    private MutableLiveData<Integer> mBtnRedPoint;
+    private MutableLiveData<Integer> mBtnProyecto;
+    private MutableLiveData<Integer> mBtnORepeticion;
 
     private MutableLiveData<Integer> mPorcentaje;
     private MutableLiveData<Sesion> mSesion;
@@ -53,7 +60,12 @@ public class SesionEditarViewModel extends AndroidViewModel {
         mFecha = new MutableLiveData<>();
         mFlag = new MutableLiveData<>();
         mFlag2 = new MutableLiveData<>();
-        mSesion=new MutableLiveData<>();
+        mSesion = new MutableLiveData<>();
+        mBtnOnsight = new MutableLiveData<>();
+        mBtnFlash = new MutableLiveData<>();
+        mBtnRedPoint = new MutableLiveData<>();
+        mBtnProyecto = new MutableLiveData<>();
+        mBtnORepeticion = new MutableLiveData<>();
     }
 
 
@@ -89,12 +101,59 @@ public class SesionEditarViewModel extends AndroidViewModel {
         return mFecha;
     }
 
+    public LiveData<Integer> getmBtnOnsight() {
+        return mBtnOnsight;
+    }
+
+    public LiveData<Integer> getmBtnFlafh() {
+        return mBtnFlash;
+    }
+
+    public LiveData<Integer> getmBtnRedPoint() {
+        return mBtnRedPoint;
+    }
+
+    public LiveData<Integer> getmBtnProyecto() {
+        return mBtnProyecto;
+    }
+
+    public LiveData<Integer> getmBtnORepeticion() {
+        return mBtnORepeticion;
+    }
+
     public void setmIntentos(int intentos) {
         this.mIntentos.setValue(intentos);
     }
 
     public void setmPorcentaje(int porcentaje) {
         this.mPorcentaje.setValue(porcentaje);
+    }
+
+    public void setTipo(int idTipoSesion) {
+        mBtnFlash.setValue(R.drawable.button_pressed_border);
+        mBtnOnsight.setValue(R.drawable.button_pressed_border);
+        mBtnRedPoint.setValue(R.drawable.button_pressed_border);
+        mBtnORepeticion.setValue(R.drawable.button_pressed_border);
+        mBtnProyecto.setValue(R.drawable.button_pressed_border);
+
+        switch (idTipoSesion) {
+            case 1:
+                mBtnOnsight.setValue(R.drawable.button_pressed_border_grey);
+                break;
+            case 2:
+                mBtnFlash.setValue(R.drawable.button_pressed_border_grey);
+                break;
+            case 3:
+                mBtnRedPoint.setValue(R.drawable.button_pressed_border_grey);
+                break;
+            case 4:
+                mBtnProyecto.setValue(R.drawable.button_pressed_border_grey);
+                break;
+            case 5:
+                mBtnORepeticion.setValue(R.drawable.button_pressed_border_grey);
+                break;
+
+        }
     }
 
     public void getResenia(int idVia) {
@@ -196,7 +255,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
         if (sesion.getIdVia() <= 0) {
             Toast.makeText(getApplication(), "idVia no válido", Toast.LENGTH_SHORT).show();
         }
-        if (sesion.getPorcentaje() < 0 || sesion.getPorcentaje() > 100) {
+        /*if (sesion.getPorcentaje() < 0 || sesion.getPorcentaje() > 100) {
             Toast.makeText(getApplication(), "Porcentaje no válido", Toast.LENGTH_SHORT).show();
 
         }
@@ -211,7 +270,7 @@ public class SesionEditarViewModel extends AndroidViewModel {
         if (sesion.getIntentos() <= 0) {
             Toast.makeText(getApplication(), "Intentos no válido", Toast.LENGTH_SHORT).show();
 
-        }
+        }*/
 
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
         Log.d("salida", "sesion editada: " + sesion.toString());

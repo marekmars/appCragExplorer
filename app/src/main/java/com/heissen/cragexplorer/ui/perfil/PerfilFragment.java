@@ -40,7 +40,7 @@ public class PerfilFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         vm = new ViewModelProvider(this).get(PerfilViewModel.class);
-
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         vm.getUsuarioActivo();

@@ -44,11 +44,14 @@ private Sesion sesion;
                              @Nullable Bundle savedInstanceState) {
         vm = new ViewModelProvider(this).get(SesionDetalleViewModel.class);
         binding = FragmentSesionDetalleBinding.inflate(getLayoutInflater());
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.GONE);
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Bundle bundle = getArguments();
         vm.obtenerSesion(bundle.getSerializable("sesion", Sesion.class).getId());
+
         vm.getmSesion().observe(getViewLifecycleOwner(),sesion -> {
             this.sesion=sesion;
+            bundle.putSerializable("sesion",sesion);
             vm.getResenia(sesion.getIdVia());
             vm.getFotosViaUsuario(sesion.getIdVia());
             vm.setDrawableEstilo(sesion.getVia().getIdEstilo());
