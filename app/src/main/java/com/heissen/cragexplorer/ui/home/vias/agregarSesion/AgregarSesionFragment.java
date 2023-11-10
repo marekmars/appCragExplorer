@@ -132,10 +132,11 @@ public class AgregarSesionFragment extends Fragment {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    vm.agregarFotoVia(vm.getmUrliList().getValue(), via.getId());
+
                     DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
                     String formattedDate = selectedDate.format(formatter);
-                    vm.cargarSesion(new Sesion(via.getId(), porcentaje/100, formattedDate, tipoAscenso, intentos));
+                    vm.cargarSesion(new Sesion(via.getId(), porcentaje/100, formattedDate, tipoAscenso, intentos),vm.getmUrliList().getValue());
+                  /*  vm.agregarFotoVia(vm.getmUrliList().getValue(), via.getId());*/
                     vm.cargarResenia(new Resenia(via.getId(), binding.etComentario.getText().toString(), calificacion, formattedDate));
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

@@ -55,8 +55,8 @@ public class EditarPerfilFragment extends Fragment {
         vm.chequearUsuario(usuario);
         vm.getmGoogleUser().observe(getViewLifecycleOwner(),flag -> {
             binding.etCorreoEditarPerfil.setEnabled(flag);
+            binding.tilClaveEditarPerfil.setEnabled(flag);
             binding.etClaveNuevamenteEditarPerfil.setEnabled(flag);
-            binding.etClaveEditarPerfil.setEnabled(flag);
 
         });
 

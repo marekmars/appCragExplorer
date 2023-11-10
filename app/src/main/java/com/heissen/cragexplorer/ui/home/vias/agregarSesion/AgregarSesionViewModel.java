@@ -145,7 +145,7 @@ public class AgregarSesionViewModel extends AndroidViewModel {
         this.mPorcentaje.setValue(porcentaje);
     }
 
-    public void agregarFotoVia(ArrayList<Uri> listUris, int idVia) {
+    private void agregarFotoVia(ArrayList<Uri> listUris, int idVia) {
         ArrayList<String> imgsBase64 = new ArrayList<>();
         if (listUris != null && !listUris.isEmpty()) {
             listUris.forEach(s -> {
@@ -192,25 +192,27 @@ public class AgregarSesionViewModel extends AndroidViewModel {
     }
 
 
-    public void cargarSesion(Sesion sesion) {
+    public void cargarSesion(Sesion sesion,ArrayList<Uri> listUris) {
         if (sesion.getIdVia() <= 0) {
             Toast.makeText(getApplication(), "idVia no válido", Toast.LENGTH_SHORT).show();
+            return;
         }
         if (sesion.getPorcentaje() < 0 || sesion.getPorcentaje() > 100) {
             Toast.makeText(getApplication(), "Porcentaje no válido", Toast.LENGTH_SHORT).show();
-
+            return;
         }
         if (sesion.getFecha() == null) {
             Toast.makeText(getApplication(), "La fecha no puede ser nula", Toast.LENGTH_SHORT).show();
-
+            return;
         }
         if (sesion.getIdTipo() <= 0) {
             Toast.makeText(getApplication(), "El tipo no puede ser 0", Toast.LENGTH_SHORT).show();
+            return;
 
         }
         if (sesion.getIntentos() <= 0) {
             Toast.makeText(getApplication(), "Intentos no válido", Toast.LENGTH_SHORT).show();
-
+            return;
         }
 
         ApiService.ApiInterface apiService = ApiService.getApiInferface();
@@ -222,6 +224,7 @@ public class AgregarSesionViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Sesion> call, Response<Sesion> response) {
                 if (response.isSuccessful()) {
+                    agregarFotoVia(listUris,sesion.getIdVia());
                     mFlag2.setValue(true);
                     Log.d("salida", "respuesta: "+mFlag2.getValue());
                 } else {
